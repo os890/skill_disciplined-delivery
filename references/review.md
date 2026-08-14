@@ -48,6 +48,21 @@ Rank by severity, most severe first. Prefer few confirmed findings over many spe
 - Resource lifecycles: closed streams, released connections, cancelled subscriptions, bounded queues and caches.
 - Data: migrations reversible, backfill correct, no accidental full-table operation.
 
+### Workarounds
+
+A workaround makes the symptom go away without the cause ever being named. They arrive while debugging, survive because the suite went green, and a week later are indistinguishable from ordinary code — so look for them on purpose rather than hoping to notice one.
+
+- A retry, a `sleep`, a widened timeout, an extra refresh or flush wrapped around the call that was failing.
+- A `catch` that swallows, or a null check for a value that supposedly cannot be null.
+- A special case for the one input that broke — a branch on an id, a name, a magic value.
+- A framework knob turned during debugging and left turned: eager loading, changed transaction propagation, a disabled optimisation, `@SuppressWarnings`, a locally silenced lint rule.
+- A fix applied where it was easy rather than where the fault is — patched in the caller because the callee was harder to change.
+- Comments that admit it: "for some reason", "somehow", "shouldn't be needed", "temporary", "hack".
+
+**The test is to delete it and run the suite.** Nothing fails → it is dead, or the behaviour it protects is untested; both are findings. Something fails → that failure names the real cause, which is what the commit message and the ticket should have said in the first place.
+
+A workaround is not automatically wrong — an upstream bug you cannot reach is a legitimate reason for one. It has to be **visible**: what it works around, why the cause cannot be addressed here, the upstream issue if there is one, and what would let it be removed — in a comment at the site and as a ticket, arc42 §11 when it is structural. An unexplained workaround is a finding; an explained one is a decision.
+
 ### Efficiency
 
 - Needless allocation, repeated computation of the same value, work done inside a loop that belongs outside.
