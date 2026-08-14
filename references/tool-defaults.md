@@ -31,6 +31,7 @@ Two rules that decide dependency questions without opening a reference: a **copy
 | Third-party libraries | **Nothing new without the user's permission.** Pre-approved: the platform surface above, and the tools named as defaults in this table. Anything else is a proposal |
 | Code structure | Modules along DDD boundaries — one per bounded context — even for a deployment monolith |
 | Java integration tests (CDI/Jakarta) | **jawelte** — JUnit 6 extension bootstrapping CDI in-process, no application server, no container |
+| JS / TypeScript tests | **Vitest** — the Angular CLI default since Angular 21, and the general JS/TS default here. Karma and Jasmine are deprecated. Coverage comes from Vitest itself (v8), under the same threshold and ratchet |
 | Containers | **Podman**; fallback is **Docker Engine/CLI**, never Docker Desktop, which is proprietary and needs a paid subscription above a company-size threshold. Driven by the test suite (e.g. Testcontainers) |
 | Releases | The build tool's standard release mechanism — Maven: **`maven-release-plugin`**. Never a hand-typed command sequence |
 | Repeated manual steps | A committed POSIX script under `scripts/`, portable to Linux and containers, linted with `shellcheck` |

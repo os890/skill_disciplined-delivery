@@ -146,7 +146,7 @@ Everything the skill can reach for, why, and which option wins when there are se
 | Secret scanning | **gitleaks** (CLI or container) | Keeps credentials out of the diff and the history | Default — never the vendor's CI wrapper action, which is separately licensed |
 | Local hooks | **pre-commit** | Fast local mirror of the build's gates | Default (CLI; the hosted service is not needed) |
 | Build hygiene | **maven-enforcer-plugin** | Pins tool versions, converges dependencies, bans duplicates and snapshots | Default (Maven); Gradle version catalogs / locking, `npm ci`, `cargo deny` elsewhere |
-| Coverage | **JaCoCo** with `check` bound to `verify` | Coverage measured *and* enforced, not just reported | Default (Maven); `cargo-llvm-cov`, `go test -coverprofile`, `coverage.py`, `c8`/`nyc`, Coverlet elsewhere |
+| Coverage | **JaCoCo** with `check` bound to `verify` | Coverage measured *and* enforced, not just reported | Default (Maven); `cargo-llvm-cov`, `go test -coverprofile`, `coverage.py`, **Vitest** coverage (JS/TS), Coverlet elsewhere |
 | Formatting | The language's own formatter | One canonical format, zero style debate | Default: Spotless (Java), `ruff` (Python), `gofmt` (Go), `rustfmt` (Rust), Prettier (JS/TS), `dotnet format` (.NET) |
 | Style checks | **Checkstyle** | Conventions the formatter cannot express | Optional, where the project already uses it |
 | Static analysis | **SpotBugs**, **Error Prone**, **NullAway** | Bug patterns and nullability caught at build time | Default (Java); `golangci-lint`, `clippy`, `mypy`/`pyright`, `tsc --noEmit`, Roslyn analyzers elsewhere |
@@ -165,6 +165,7 @@ Everything the skill can reach for, why, and which option wins when there are se
 | Java platform | **Jakarta EE APIs + MicroProfile** | Programme against the spec; implementations stay replaceable | Default — needs no permission, unlike any other library |
 | Java configuration | **MicroProfile Config** | One standard configuration source instead of a hand-rolled loader | Default |
 | Code structure | **Modules along DDD boundaries** | A deployment monolith still gets a modular codebase; boundary violations become compile errors | Default (Maven/Gradle multi-module + ArchUnit) |
+| JS / TypeScript tests | **Vitest** | Angular CLI default since v21; Karma and Jasmine are deprecated. Coverage built in, so no separate tool | Default (JS/TS) |
 | Java integration tests (CDI) | **jawelte** | Bootstraps CDI in-process as a JUnit 6 extension — integration tests written like unit tests, no server, no container | Default for Jakarta/CDI projects |
 | Test containers | **Testcontainers** | The suite owns the lifecycle of real dependencies | Default *only* where a real engine cannot run in-process (needs `DOCKER_HOST` + Ryuk disabled under rootless Podman) |
 | HTTP fakes | **WireMock** | A real fake server instead of a hand-written mock, at the system edge | Default |

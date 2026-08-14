@@ -76,7 +76,7 @@ The build enforces the rules of this skill — a rule only a human remembers is 
 | Concern | Maven default | Elsewhere |
 | --- | --- | --- |
 | Build and dependency hygiene | **maven-enforcer-plugin** — `requireMavenVersion`, `requireJavaVersion`, `dependencyConvergence`, banned and duplicate dependencies, no snapshot deps in releases | Gradle dependency locking / version catalogs, `npm ci` with a committed lockfile, `cargo deny check` |
-| Coverage with a failing threshold | **jacoco-maven-plugin**, `check` rules bound to `verify` — threshold 80 % floor, ~90 % on new code, ratcheted where the repo starts below (see `code-and-tests.md` § Coverage) | `cargo-llvm-cov`, `go test -coverprofile` + threshold check, `coverage.py --fail-under`, `c8`/`nyc`, Coverlet |
+| Coverage with a failing threshold | **jacoco-maven-plugin**, `check` rules bound to `verify` — threshold 80 % floor, ~90 % on new code, ratcheted where the repo starts below (see `code-and-tests.md` § Coverage) | `cargo-llvm-cov`, `go test -coverprofile` + threshold check, `coverage.py --fail-under`, **Vitest** coverage (v8) for JS/TS, Coverlet |
 | Formatting and linting | **Spotless** (`spotless:check`), Checkstyle where the project uses it | `ruff`, `gofmt -l` + `golangci-lint`, `clippy -D warnings`, ESLint + Prettier, `dotnet format --verify-no-changes` |
 | Static analysis / bug patterns | **SpotBugs**, Error Prone (+ NullAway) | `golangci-lint`, `clippy`, `mypy`/`pyright`, `tsc --noEmit`, Roslyn analyzers |
 | Architecture and DDD boundaries | **ArchUnit** tests | `import-linter` (Python), `eslint-plugin-boundaries`, `deptrac` |
