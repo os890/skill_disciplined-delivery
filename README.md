@@ -145,6 +145,10 @@ At the start of a session it asks one question — *proactive, or this task only
 
 Neither setting changes how completely the task itself gets done — it bounds how many things are taken on, not how well the one you asked for is finished.
 
+### It tells you when it is your turn
+
+Every reply ends with **Action points** — a short list of what only you can do: review and merge a PR, answer a blocking question, make a decision. It comes last, after the summary and after any suggestions, and when a PR is waiting it is usually the single line. If nothing needs you, the block is absent rather than saying "none", so its presence is the signal.
+
 ### It pushes back before it complies
 
 Agreement is not the default answer. When the approach, scope, tool or trade-off looks wrong, you get the concern, the alternative and what each costs — once, before the work happens, not as a hedge afterwards. Then it does what you decide, in full, and writes the accepted trade-off onto the ticket or into an ADR so the reasoning survives the conversation.
