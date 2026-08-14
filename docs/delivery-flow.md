@@ -21,22 +21,22 @@ The detail flowcharts declare `layout: elk` in their frontmatter: ELK routes edg
 flowchart TB
     OR["<b>Orient</b> in the repo<br/><i>project instructions · ADR titles · NFRs · build gates</i>"]
     OR --> MI[/"<b>Mirror the topic back and WAIT</b><br/>goal · scope · risks — <i>no design, no tool choice yet</i>"/]
-    MI --> SG{"<b>Scope gate</b> — proposed, never silent"}
+    MI --> SG["<b>Scope gate</b> — proposed, never silent"]
 
     SG -->|brainstorm| EX["Options, questions, a draft<br/>ticket — <b>never code</b>"]
     SG -->|spike| SP["One time-boxed <code>spike/</code> branch,<br/>throwaway — <b>never the mainline</b>"]
     SG -->|"small, confirmed"| RP["<b>Reduced path</b> — ticket →<br/>TDD → green build → PR"]
-    SG ==>|"<b>default</b>"| FULL
+    SG ==>|"<b>default</b>"| DEF
 
-    EX -.->|"becomes a ticket"| FULL
-    SP -.->|"real work restarts"| FULL
+    EX -.->|"becomes a ticket"| DEF
+    SP -.->|"real work restarts"| DEF
 
     subgraph FULL["The full flow — ten phases"]
         direction LR
         DEF["<b>Define</b><br/>1 ticket<br/>2 clarify<br/>3 criteria · ADR · NFR"] --> PLN["<b>Plan</b><br/>4 committed before<br/>code, verified against<br/>the definitions"] --> BLD["<b>Build</b><br/>5 TDD, red → green<br/>6 every gate green"] --> VER["<b>Verify</b><br/>7 commit + PR<br/>8 independent review"] --> FIN["<b>Finish</b><br/>9 docs + diagrams<br/>10 production readiness"]
     end
 
-    FULL --> DONE(["Done — and traceable"])
+    FIN --> DONE(["Done — and traceable"])
     RP --> DONE
     DONE -.->|"held true at every step above"| ALWAYS
 
