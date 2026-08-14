@@ -122,7 +122,7 @@ Other skills and tooling may be reused wherever they do not contradict these rul
 
 Deviate only when the project already mandates something else, and record the deviation.
 
-**Every default here must be open source and runnable on a developer's own machine** — natively or in a Podman container — with no subscription, no seat licence and no cloud account. The single accepted exception is the remote repository and ticket system (GitHub). Before proposing any tool not listed here, check that it meets the same bar; if the capability we rely on turns out to sit behind a paid edition, say so and propose a free alternative rather than assuming the free tier covers it.
+**Every default here must be open source and runnable on a developer's own machine** — natively or in a Podman container — with no subscription, no seat licence and no cloud account. The single accepted exception is the remote repository and ticket system (GitHub). Any tool not listed here must clear the same bar: check before proposing it, and never assume a free tier covers the capability we rely on.
 
 Two rules that decide dependency questions without opening a reference: a **copyleft (GPL/AGPL/LGPL) runtime dependency is a blocker** — report it, never resolve it alone — while copyleft *build-time* tooling is fine, since it is not part of the artifact. Details and the list of tools that have already failed this bar: `references/project-setup.md`.
 
@@ -157,14 +157,7 @@ Two rules that decide dependency questions without opening a reference: a **copy
 | Build quality gates | The build tool's quality plugins — Maven: enforcer, JaCoCo, Spotless, SpotBugs, RAT (see `references/project-setup.md`) |
 | Coverage | **~90 % line and branch on new or changed code, 80 % enforced floor.** In a repo already below it, set the gate to current coverage and ratchet upward — it never decreases |
 
-**Running tooling that isn't installed.** Never install a heavyweight tool onto the user's machine on your own initiative. If a tool such as Playwright is not already a project dependency and Podman (or Docker) is available, run it from its official container image with the workspace mounted — for Playwright the maintained image already carries matching browsers, which is more reliable than a local browser download. Podman first, Docker Engine/CLI as fallback. If neither the tool nor a container runtime is available, stop and ask; do not silently skip the screenshots or the end-to-end tests.
-
-## Release and automation
-
-Two recurring activities that sit outside the ten phases. Details in `references/release-and-automation.md`; the binding rules:
-
-- **A release is never a hand-typed sequence of commands.** Use the build tool's standard release mechanism — Maven: `maven-release-plugin` — from a clean tree on a green mainline, with the changelog cut, the SemVer level decided by the compatibility gate, and the SBOM attached. Never hand-edit a version the release tool owns.
-- **Anything done by hand a second time becomes a committed script** under `scripts/` — POSIX, portable to Linux so it also runs in a container, `shellcheck`-gated, and called by CI as well as locally. A manual sequence repeated across sessions is a defect: it drifts, it is undocumented, and it cannot be reviewed.
+**Running tooling that isn't installed.** Never install a heavyweight tool onto the user's machine on your own initiative. Run it from its official container image with the workspace mounted — Podman first, Docker Engine/CLI as fallback. If neither the tool nor a container runtime is available, stop and ask; never silently skip the screenshots or the end-to-end tests.
 
 ## Progress tracking
 
@@ -245,7 +238,6 @@ A failing gate is a finding, not an obstacle: fix the code. **Never disable a pl
 - A user-visible change adds a `CHANGELOG.md` entry under *Unreleased*, written from the user's point of view — not a paste of the commit subject — grouped as Added / Changed / Deprecated / Removed / Fixed / Security, with a migration note for a breaking change (`references/documentation.md`).
 - Push the branch and open a PR where the project supports them.
 - **Merge commits, no squash** unless the user asks — the small coherent commits are the history.
-- Release automation that requires squashed commits (`semantic-release` and the like) is **not** a default: propose it only if the user asks for it and explicitly accepts giving up the merge-commit history. `git-cliff` drafting a changelog from Conventional Commits gives the same benefit without that trade.
 - The PR description links the ticket, summarises the change, notes deviations from the plan and why, and lists what a reviewer should look at.
 
 ### 8. Review
