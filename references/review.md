@@ -27,6 +27,7 @@ Rank by severity, most severe first. Prefer few confirmed findings over many spe
 - Did the implementation follow the **plan**? Deviations are allowed but must be stated in the PR — an unexplained deviation is a finding.
 - Does anything **contradict an ADR or an NFR**? Is a performance-related NFR backed by a measurement rather than an assumption?
 - Is anything present that **no definition asked for** — an extra flag, an unused extension point, a speculative abstraction? That is scope creep, and it is a finding.
+- Is anything **a definition asked for missing**? Only the happy path implemented, an edge case from phase 2 unhandled, another caller of the changed code left untouched, a value hardcoded that an NFR says is configurable, an error path that returns but does not report. This is the harder half of the same check: scope creep is visible in the diff, whereas an unfinished change looks like restraint. Weigh it the same.
 - Was a **third-party dependency added** without the user's explicit permission? Was something hand-rolled that the platform already provides — configuration in particular?
 - Do the **module boundaries** hold? A new dependency between modules, a domain module reaching into infrastructure, or a context reaching into another context's internals is a finding even when it compiles.
 - Was any **decision made invisibly** — a default, a limit, a timeout, a rounding rule, a retry count — without a definition behind it?

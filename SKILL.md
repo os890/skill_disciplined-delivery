@@ -190,6 +190,8 @@ Present the verification result to the user before starting.
 
 Red → green → refactor, per plan step. Commit in small, coherent steps that keep the suite green. Standards for the code, the tests and the structure: `references/code-and-tests.md`.
 
+**Done means the definitions are met, not that the happy path runs.** Doing more than they ask is scope creep; doing less is an unfinished change, and the harder of the two to see. Neither is decided by taste — the criteria, the NFRs and the phase 2 edges say which it is.
+
 If you discover something the definitions don't cover, **pause that part**: post the open question and mark the phase blocked — but continue with every step that does not depend on the answer, and batch open questions into one ask rather than stopping the whole task per question. Never invent the answer and carry on.
 
 ### 6. Build gate
