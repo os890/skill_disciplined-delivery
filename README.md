@@ -77,7 +77,21 @@ The reference files are read on demand, at the phase that needs them. Nothing in
 
 ## Starting a new project
 
-Ask for the project to be initialized, and expect these questions first — the skill will not guess any of them:
+Open a session in the empty project folder and give it everything you already know. A prompt worth copying:
+
+> Let's start a new project in this folder: **orders-service**, which `<what it does, for whom, and what they do about it today>`.
+>
+> - Stack `<Java 25 · Spring Boot · PostgreSQL · Angular>`, base package `<com.example.orders>`. Use current stable versions — check them rather than relying on your training data.
+> - Remote `<owner/orders-service>` on GitHub, GitHub Issues for tickets, GitHub Actions running the same build I run locally.
+> - License `<Apache-2.0>`. arc42 `<full set>`. Accessibility and security obligations: `<none beyond sensible defaults>`.
+> - Commits: `<plain Conventional Commits>` — or `<the work-in-progress convention>`.
+> - Working mode `<task only>`. Go step by step and keep the tickets fine-grained: one coherent slice each, and every build gate on its own ticket.
+>
+> Mirror back what you understood, and what is still open, before writing anything.
+
+Two things in there are doing real work. **"Check current stable versions"** matters because a model's idea of "latest" is as old as its training data, and a version pinned wrong on day one ends up in the build file, the ADR and every later assumption. **"One coherent slice each, every gate on its own ticket"** is what keeps the first day reviewable — scaffolding, each quality gate and the walking skeleton arriving separately rather than as one unreadable initial commit.
+
+Leave out anything you have not decided; guessing is what the flow exists to prevent. Whatever is missing gets asked, and none of it is inferred:
 
 1. **License** — required, and never chosen for you.
 2. Build tool, target platform version, ticket system, CI system.
