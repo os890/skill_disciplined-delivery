@@ -35,6 +35,7 @@ Rank by severity, most severe first. Prefer few confirmed findings over many spe
 ### Contracts, history and release artifacts
 
 - Does the commit history follow **Conventional Commits** with the ticket number, and is each commit coherent on its own?
+- Does every subject carry a status token, and is **no pushed commit still `UNTESTED`**? One that is means either the promotion to `WORKING` was skipped or the work genuinely has no test — find out which.
 - Is there a **`CHANGELOG.md`** entry for anything a user or integrator notices, written for them rather than pasted from the commit — and a migration note for a breaking change?
 - If an **API contract** changed: is the OpenAPI / AsyncAPI file updated in the same PR, is the change non-breaking, and if it breaks, is that reflected in the version, the changelog and an ADR?
 - If a **migration** was added: is it exercised from an empty schema *and* from the previous release's schema, and is the claimed rollback actually tested?

@@ -201,7 +201,9 @@ Present the verification result to the user before starting.
 
 ### 5. Implementation — TDD
 
-Red → green → refactor, per plan step. Commit in small, coherent steps that keep the suite green. Standards for the code, the tests and the structure: `references/code-and-tests.md`.
+Red → green → refactor, per plan step. Commit in small, coherent steps; the suite is green at every commit you **push**. Standards for the code, the tests and the structure: `references/code-and-tests.md`.
+
+**Commit as soon as a piece of work exists** — before it is tested, before the step is finished, before you are happy with it. An uncommitted change is the only kind that can be lost, and a local commit costs nothing. Work in progress is not forbidden, it is *labelled*: the status token below says what state it is in.
 
 **Done means the definitions are met, not that the happy path runs.** Doing more than they ask is scope creep; doing less is an unfinished change, and the harder of the two to see. Neither is decided by taste — the criteria, the NFRs and the phase 2 edges say which it is.
 
@@ -216,6 +218,11 @@ A failing gate is a finding, not an obstacle: fix the code. **Never disable a pl
 ### 7. Commit and PR
 
 - Commit subject follows **Conventional Commits** and carries the ticket number when the system has one: `feat(billing): #42 round settlement amounts half-up`.
+- **Every subject opens with a status token**, so the state of a commit is readable without running anything:
+  - `UNTESTED` — no test covers this yet. Legitimate locally, and the reason committing early is safe.
+  - `WORKING` — the suite covers it and passes.
+  - `FIXED` — repairs something a push had already broken.
+- **`UNTESTED` never reaches the remote.** Amend it to `WORKING` once the tests pass, before pushing. Once pushed the history is shared, so a later repair is a new `FIXED` commit, never a rewrite of what others may already have.
 - Every commit you author carries a `Co-Authored-By:` trailer naming the model.
 - A user-visible change adds a `CHANGELOG.md` entry under *Unreleased*, written from the user's point of view — not a paste of the commit subject — grouped as Added / Changed / Deprecated / Removed / Fixed / Security, with a migration note for a breaking change (`references/documentation.md`).
 - Push the branch and open a PR where the project supports them.
