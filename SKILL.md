@@ -218,7 +218,7 @@ A failing gate is a finding, not an obstacle: fix the code. **Never disable a pl
 ### 7. Commit and PR
 
 - Commit subject follows **Conventional Commits** and carries the ticket number when the system has one: `feat(billing): #42 round settlement amounts half-up`.
-- **Where the work-in-progress convention is on** (`ADR-0001`), `commitlint` is not in use and every subject opens with a status token instead, so the state of a commit is readable without running anything:
+- **Where the work-in-progress convention is on** (`ADR-0001`), the subject keeps that same Conventional Commits form but leads with a status token — `UNTESTED feat(billing): #42 …` — and `commitlint`, which cannot parse the token, is not used:
   - `UNTESTED` — no test covers this yet. Legitimate locally, and the reason committing early is safe.
   - `WORKING` — the suite covers it and passes.
   - `FIXED` — repairs something a push had already broken.

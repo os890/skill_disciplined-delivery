@@ -18,7 +18,7 @@ Every project carries these at the **repository root** — and in a repository h
 | `.editorconfig` | Required. Indentation, charset, final newline — stops IDE-driven whitespace churn. |
 | `.gitattributes` | Required. `* text=eol=lf` plus binary markers, so line endings never depend on the developer's OS. |
 | `.gitignore` | Required. Build output, IDE files, local configuration — so a `git status` is meaningful and no artifact is committed by accident. |
-| `.pre-commit-config.yaml` (or hooks) | Fast local mirror of the build's gates: formatter, `gitleaks`, `commitlint`. |
+| `.pre-commit-config.yaml` (or hooks) | Fast local mirror of the build's gates: formatter, `gitleaks`, and `commitlint` where it is in use. |
 | Lockfile | Committed, so a build is reproducible and an update is a visible diff. |
 | `docs/user/` | End-user documentation. |
 | `docs/technical/` | Technical documentation, with diagrams. |
@@ -102,7 +102,7 @@ The build enforces the rules of this skill — a rule only a human remembers is 
 
 ### Local hooks are a mirror, not the authority
 
-Hooks (`pre-commit`, `commitlint`, `gitleaks`) exist to fail in two seconds instead of two minutes. Everything they check is **also** checked by the build, because a hook can be skipped with `--no-verify` and a fresh clone may not have them installed. Never move a check into a hook only.
+Hooks (`pre-commit`, `gitleaks`, and `commitlint` where it is in use) exist to fail in two seconds instead of two minutes. Everything they check is **also** checked by the build, because a hook can be skipped with `--no-verify` and a fresh clone may not have them installed. Never move a check into a hook only.
 
 Run the hook framework locally as a CLI. Its hosted counterpart is a separate product that is not free for private repositories, and it is not needed: the build already runs the same checks.
 
@@ -135,7 +135,7 @@ Introduce gates **one at a time, each on its own ticket**, so every diff stays r
 4. Coverage measurement, gate set to the current number (see the ratchet in `code-and-tests.md`).
 5. Static analysis, with a baseline for existing findings and zero tolerance for new ones.
 6. Architecture tests, encoding the boundaries the code already respects.
-7. `commitlint` and `CHANGELOG.md`, starting from the current version — do not backfill history.
+7. `CHANGELOG.md`, starting from the current version — do not backfill history — plus `commitlint`, unless the project uses the work-in-progress commit convention.
 8. Dependency and license scanning, SBOM, then the recurring dependency-update ticket once the suite is trustworthy enough to make an update safe.
 
 Never introduce a gate and a behaviour change in the same commit.
@@ -146,7 +146,7 @@ Order that avoids rework:
 
 1. Ask the user: license, build tool, target platform version, ticket system, CI system, which arc42 sections the project will use, the **accessibility and security requirements** (below), and whether the project wants the **work-in-progress commit convention** (below). **Do not choose the license.**
 2. `README.md`, `LICENSE`, `CHANGELOG.md`, `.editorconfig`, `.gitattributes`, `docs/` skeleton.
-3. Build file with the quality gates wired from the start — cheapest moment there is — plus hooks, `commitlint`, and the release mechanism from `release-and-automation.md`.
+3. Build file with the quality gates wired from the start — cheapest moment there is — plus hooks, the release mechanism from `release-and-automation.md`, and `commitlint` unless answer 1 chose the work-in-progress commit convention.
 4. `ADR-0001` recording the stack, the gate set, which arc42 sections the project uses and whether the work-in-progress commit convention is on, so later deviations have something to deviate from.
 5. `docs/requirements/nfr.md` with whatever numbers are known, even if sparse, and the arc42 sections you can already fill — §1, §2, §3 and §12 usually exist on day one. Leave the rest out until there is content.
 6. CI running the same build the developer runs.

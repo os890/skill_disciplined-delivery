@@ -31,7 +31,7 @@ Verify with `/disciplined-delivery` in Claude Code, or just start a work item: t
 | `references/review.md` | The review brief, handed to the review agent verbatim. |
 | `references/release-and-automation.md` | Cutting a release, and turning repeated manual steps into portable scripts. |
 | `references/exploration.md` | What a brainstorming session produces, and the per-branch permission a spike needs. |
-| `docs/delivery-flow.md` | The flow as diagrams — Mermaid source, nine of them. |
+| `docs/delivery-flow.md` | The flow as diagrams — Mermaid source, eleven of them. |
 | `docs/diagrams/delivery-flow.md` | The same document with the fences replaced by rendered PNGs. **Open this one on GitHub**, which cannot render the ELK layout the source asks for. |
 
 The reference files are read on demand, at the phase that needs them. Nothing in `docs/` is loaded by the skill — it is there for people, not for the model.
@@ -49,7 +49,7 @@ Ask for the project to be initialized, and expect these questions first — the 
 It then creates, in this order:
 
 1. `README.md`, `LICENSE`, `CHANGELOG.md`, `.editorconfig`, `.gitattributes`, `docs/` skeleton.
-2. The build file with quality gates wired in from the start — cheapest moment there is — plus hooks and `commitlint`.
+2. The build file with quality gates wired in from the start — cheapest moment there is — plus hooks, and `commitlint` unless the work-in-progress commit convention was chosen.
 3. `ADR-0001` recording the stack, the gate set and the chosen arc42 scope.
 4. `docs/requirements/nfr.md`, and the arc42 sections that already have content.
 5. CI running the same build a developer runs.
@@ -65,7 +65,7 @@ Nothing is switched on silently. The skill reports what is missing and proposes 
 4. Coverage measurement, gate set to the *current* number and ratcheted upward from there.
 5. Static analysis, baselined for existing findings, zero tolerance for new ones.
 6. Architecture tests encoding boundaries the code already respects.
-7. `commitlint` and `CHANGELOG.md`, starting from the current version — history is not backfilled.
+7. `CHANGELOG.md` starting from the current version — history is not backfilled — and `commitlint` unless the work-in-progress commit convention is in use.
 8. Dependency and license scanning, SBOM, then the recurring dependency-update ticket.
 
 ## Across sessions
@@ -139,7 +139,7 @@ Everything the skill can reach for, why, and which option wins when there are se
 | Remote + tickets | **GitHub** (`gh`, GitHub Issues) | Remote repository, PRs, ticket system | Default — the accepted hosted exception |
 | Ticket fallback | `docs/tickets/<id>.md` | Keeps work unblocked when no ticket system is reachable | Fallback only |
 | Commit format | **Conventional Commits** | Machine-readable history, feeds changelog generation | Default |
-| Commit gate | **commitlint** | Fails the build on a non-conforming commit message | Default |
+| Commit gate | **commitlint** | Fails the build on a non-conforming commit message | Default — dropped only where the work-in-progress commit convention is chosen |
 | Versioning | **SemVer** | Version numbers that mean something to consumers | Default |
 | Changelog | **Keep a Changelog** | User-facing record of what changed per release | Default |
 | Changelog drafting | **git-cliff** | Drafts entries from the commits; curated by hand afterwards | Default |
