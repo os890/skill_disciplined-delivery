@@ -86,6 +86,19 @@ Rank by severity, most severe first. Prefer few confirmed findings over many spe
 - Missing timeout, retry or backoff on an outbound call; unbounded growth.
 - Leftover TODO, commented-out code, debug output, hardcoded value that belongs in config.
 
+### Self-contained for a fresh clone
+
+**Scope this to the changed files.** It is a check on the diff, not a repository-wide audit repeated at every review.
+
+Would someone who clones this get what the author has? Look for anything that only makes sense on one machine:
+
+- Absolute paths — `/Users/…`, `/home/…`, `C:\…` — in code, config, scripts, docs, or `.gitignore`.
+- A developer's username or hostname, or the path of a sibling project on the same disk.
+- References to files that exist only locally: a personal config, an untracked helper script, a note the reader cannot open.
+- Ignore rules, scripts or config copied from another repository and still naming *that* repository's directories and tools.
+
+None of these fail a build, which is why they survive: they work perfectly for the person who wrote them and break for everyone else. A leak spotted outside the diff is still worth raising — as a ticket, not as an expansion of this review.
+
 ## Triage
 
 Every real finding gets an outcome, decided with the user: **fix now**, **ticket it**, or **reject with a reason**. Nothing is left in the "mentioned once and forgotten" state.
