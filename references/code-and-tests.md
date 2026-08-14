@@ -6,7 +6,7 @@ Read this when planning and implementing (phases 4–5), and when judging struct
 
 **A new third-party dependency is the user's decision, not yours.** Adding a library is an architecture decision with a maintenance, licensing and supply-chain cost attached. Propose it, name what it buys and what it would replace, and wait for permission. Never pull one in because it is convenient.
 
-Two things are already approved and need no separate permission: **the platform surface**, and **the tools this skill names as defaults** (the test framework, the migration tool, the observability API and so on — the user adopted them by adopting this skill). Everything else is a proposal.
+Two things are already approved and need no separate permission: **the platform surface**, and **the tools named in `references/tool-defaults.md`** (the test framework, the migration tool, the observability API and so on — the user adopted them by adopting this skill). Everything else is a proposal.
 
 What the platform offers, for Java:
 

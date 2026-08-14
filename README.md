@@ -19,7 +19,8 @@ Verify with `/disciplined-delivery` in Claude Code, or just start a work item: t
 
 | File | Role |
 | --- | --- |
-| `SKILL.md` | The flow. Always loaded. Ten phases, the scope gate, tool defaults, hard stops. |
+| `SKILL.md` | The flow. Always loaded. Ten phases, the scope gate, hard stops. |
+| `references/tool-defaults.md` | Which tool for which concern, and the bar each must clear. Read before the first tool decision of a session. |
 | `references/project-setup.md` | Scaffolding, build quality gates, retrofit and init sequences, license compatibility. |
 | `references/code-and-tests.md` | Code, comment, DDD, API-contract and test standards. Coverage ratchet. |
 | `references/documentation.md` | arc42, Diátaxis, diagrams, screenshots, changelog, visual assets. |
