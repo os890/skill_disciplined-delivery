@@ -1,8 +1,8 @@
 # Tool defaults
 
-**Read this before naming, proposing, configuring or running any tool** — build plugin, test framework, linter, formatter, migration tool, diagram format, container runtime, doc structure. This table is the answer to "which tool?"; your own preference is not. Reaching for a tool this file does not name, without saying so, is exactly the invisible decision rule 1 forbids.
+**Read this before introducing a tool the project does not already have** — build plugin, test framework, linter, formatter, migration tool, diagram format, container runtime, doc structure. This table is the answer to "which tool?"; your own preference is not. Reaching for a tool this file does not name, without saying so, is exactly the invisible decision rule 1 forbids.
 
-Deviate only when the project already mandates something else, and record the deviation.
+**What the project already uses overrules every row below.** These are the defaults for a gap, not a target to migrate towards: an existing coverage tool, formatter or test framework stays, even where this table names a different one. Replacing one is a work item of its own, with an ADR recording why — never a side effect of unrelated work. Record any deliberate deviation the same way.
 
 **Every default here must be open source and runnable on a developer's own machine** — natively or in a Podman container — with no subscription, no seat licence and no cloud account. The single accepted exception is the remote repository and ticket system (GitHub). Any tool not listed here must clear the same bar: check before proposing it, and never assume a free tier covers the capability we rely on.
 
@@ -39,4 +39,6 @@ Two rules that decide dependency questions without opening a reference: a **copy
 | Build quality gates | The build tool's quality plugins — Maven: enforcer, JaCoCo, Spotless, SpotBugs, RAT (see `references/project-setup.md`) |
 | Coverage | **~90 % line and branch on new or changed code, 80 % enforced floor.** In a repo already below it, set the gate to current coverage and ratchet upward — it never decreases |
 
-**Running tooling that isn't installed.** Never install a heavyweight tool onto the user's machine on your own initiative. Run it from its official container image with the workspace mounted — Podman first, Docker Engine/CLI as fallback. If neither the tool nor a container runtime is available, stop and ask; never silently skip the screenshots or the end-to-end tests.
+**Where each row is spelled out:** build gates, scaffolding and the tools that failed the open-source bar → `project-setup.md`. Test frameworks, coverage ratchet, contracts and DDD structure → `code-and-tests.md`. arc42, Diátaxis, diagrams, screenshots and changelog → `documentation.md`. Release mechanism and scripts → `release-and-automation.md`.
+
+Running a tool that is not installed, and automating a repeated manual step, are both covered inline in `SKILL.md` § Tool defaults.

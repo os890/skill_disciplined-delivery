@@ -20,7 +20,7 @@ This file is the flow. Read a reference when the situation arises — not upfron
 
 | Situation | Read |
 | --- | --- |
-| **About to name, propose, configure or run any tool** | `tool-defaults.md` — before the first tool decision, every session |
+| **About to introduce a tool the project does not already use** | `tool-defaults.md` — what the project already uses wins without opening it |
 | Initializing a project; scaffolding or gates missing | `project-setup.md` |
 | Writing an ADR or an NFR (phase 3) | `documentation.md` § Architecture decision records |
 | Designing a contract, planning, or writing code and tests (phases 4–5) | `code-and-tests.md` |
@@ -121,9 +121,16 @@ Other skills and tooling may be reused wherever they do not contradict these rul
 
 ## Tool defaults
 
-**Every tool decision is already made.** `references/tool-defaults.md` holds the table — version control, commit format, test frameworks, gates, diagrams, containers, docs, coverage thresholds. **Read it before naming, proposing, configuring or running any tool**, and deviate only when the project already mandates something else, recording the deviation. Picking a tool from your own habits instead is an invisible decision.
+**A tool the project already uses wins.** The default list decides only what to *introduce* where nothing exists yet — it is never a reason to replace a working coverage tool, formatter, test framework or build plugin. Use what is there. Swapping an established tool is its own work item with an ADR behind it, never a side effect of other work.
 
-Two rules that decide dependency questions without opening it: a **copyleft (GPL/AGPL/LGPL) runtime dependency is a blocker** — report it, never resolve it alone — while copyleft *build-time* tooling is fine, since it is not part of the artifact. Every default must be open source and locally runnable with no subscription; GitHub is the single accepted exception.
+So the list matters at exactly one moment: **before introducing a tool the project does not already have, read `references/tool-defaults.md`** — version control, commit format, test frameworks, gates, diagrams, containers, docs, coverage thresholds — and deviate from it only with a recorded reason. Reaching for your own habit instead is an invisible decision.
+
+Two rules that hold whichever tool it is:
+
+- **Automate the second time.** Anything done by hand twice becomes a committed script under `scripts/` — *unless a tool or an existing script in the project already does it*, which is the first thing to check. Prefer a tool over a script, a script over a manual step, and never the same manual step twice (`references/release-and-automation.md`).
+- **Never install a heavyweight tool on the host on your own initiative.** Run it from its official container image with the workspace mounted — **Podman** first, Docker Engine/CLI as fallback. If neither the tool nor a container runtime is available, stop and ask; never silently skip the screenshots or the end-to-end tests.
+
+A **copyleft (GPL/AGPL/LGPL) runtime dependency is a blocker** — report it, never resolve it alone — while copyleft *build-time* tooling is fine, since it is not part of the artifact (`references/project-setup.md` § License compatibility). Every default must be open source and locally runnable with no subscription; GitHub is the single accepted exception.
 
 ## Progress tracking
 
@@ -240,7 +247,7 @@ Stop, say so, and involve the user when:
 - A phase would be skipped without confirmation.
 - A license must be chosen — that is the user's decision, never yours.
 - A **third-party dependency** would be added that the platform does not already provide.
-- A **tool would be named** — build plugin, framework, linter, diagram format, container runtime — without `references/tool-defaults.md` having been read first.
+- A **tool the project does not already use** would be introduced — build plugin, framework, linter, diagram format, container runtime — without `references/tool-defaults.md` having been read first, or an established one would be swapped without an ADR.
 - A **spike or PoC** would start without explicit per-branch permission, or spike code would reach the mainline.
 - A brainstorming session is about to become an implementation without passing through phase 1.
 - The **shared-understanding summary** for a new topic has not been confirmed yet.

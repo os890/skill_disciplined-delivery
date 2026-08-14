@@ -115,6 +115,8 @@ Stopping means the blocker is stated and everything independent of the answer co
 
 Everything the skill can reach for, why, and which option wins when there are several. All of it is open source, free for commercial use, and runnable on a developer machine natively or in a Podman container — GitHub being the one accepted exception.
 
+**These are defaults for a gap, not a migration target.** Whatever your project already uses overrules the table: an existing coverage tool, formatter or test framework stays, and replacing one is a work item with an ADR rather than something that happens on the side. The list decides what gets introduced where nothing exists yet.
+
 | Area | Tool / standard | Why it is used | Role |
 | --- | --- | --- | --- |
 | Version control | **Git** | History as small coherent commits; merge commits, no squash | Default |
