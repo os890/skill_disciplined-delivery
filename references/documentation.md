@@ -118,6 +118,22 @@ Rules for committed images:
 - Record the options you rejected and why — an ADR without rejected options is an announcement, not a decision record.
 - Referenced from the code and the commits by number, and indexed from arc42 §9.
 
+### What earns an ADR
+
+**Not every decision does**, and the set has a cost: every session reads the ADR *titles* while orienting, so each record that is not architectural makes the ones that are harder to find. Fifty files about tool trivia bury the three that shape the system.
+
+Write one when the decision does at least one of these:
+
+- **Constrains future work** — other code has to be written differently because of it.
+- **Is expensive to reverse** — a migration, a rewrite, or a coordinated change across modules.
+- **Would leave a newcomer asking "why is it like this?"** with no answer visible in the code.
+
+The test: *what else would have to change if this were reversed next month?* Nothing outside the file it lives in — it is not an ADR.
+
+Decisions that usually fail that test: the build wrapper (`mvnw`), a plugin version, a formatter setting, a directory name, a library pulled in for one utility, a naming convention the linter already enforces. They are still decisions and rule 1 still applies, so they are written down — just where they are used: the build file, `docs/technical/development.md`, the ticket, or a comment at the site.
+
+Borderline, prefer the ticket. An ADR can always be written later once a decision proves to shape something, whereas an ADR is immutable — a premature one cannot be deleted, only superseded, and the noise is permanent.
+
 ## Changelog
 
 `CHANGELOG.md` in **Keep a Changelog** form, with **SemVer** version headings and an *Unreleased* section that is always current.
