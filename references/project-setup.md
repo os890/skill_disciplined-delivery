@@ -83,7 +83,7 @@ The build enforces the rules of this skill — a rule only a human remembers is 
 | Dependency vulnerabilities | **dependency-check**, or the platform's advisory scan | `pip-audit`, `cargo audit`, `npm audit`, Trivy / Grype |
 | License compliance | **apache-rat-plugin** | `reuse lint`, `cargo deny check licenses`, `license-checker` (use a maintained fork — the original is stale) |
 | Secrets in the diff and history | **gitleaks** — the CLI or its container image, **not** the vendor's GitHub Action wrapper, which is licensed separately and is free only for a single repository | same tool everywhere |
-| Commit message conformance | **commitlint** in a hook and in CI | same tool everywhere |
+| Commit message conformance | **commitlint** in a hook and in CI — unless the work-in-progress convention is on, which drops it | same tool everywhere |
 | SBOM generation | **cyclonedx-maven-plugin** | `cyclonedx-*` for the ecosystem, `syft` |
 | API contract linting | **Spectral** on the OpenAPI / AsyncAPI file, `oasdiff` for breaking changes | same tools everywhere |
 | Documentation rot | **markdownlint**, **lychee** for dead links | same tools everywhere |
@@ -158,8 +158,8 @@ Not every team wants it, so **ask at project start and record the answer in `ADR
 
 > Commit as soon as work exists — even untested — with a status token on every subject (`UNTESTED` / `WORKING` / `FIXED`), promoted before pushing? Or commit only once a step is green, with plain Conventional Commits?
 
-- **On** — the rules in `SKILL.md` phases 5 and 7 apply, and `commitlint` (plus `git-cliff`) must be configured to accept the token.
-- **Off** — the ordinary model: commit when the step is green, subjects are plain Conventional Commits, and nothing in review looks for a token.
+- **On** — the rules in `SKILL.md` phases 5 and 7 apply, and **`commitlint` is dropped**: a leading status token is exactly what its parser rejects, and reconfiguring it buys less than it costs. The trade is real and worth naming — nothing then enforces the commit format, and `git-cliff` cannot draft the changelog from subjects it cannot parse, so the `CHANGELOG.md` entry is written by hand. Both are acceptable; neither should be a surprise.
+- **Off** — the ordinary model, and the one everything else in this skill is built around: commit when the step is green, plain Conventional Commits enforced by `commitlint`, `git-cliff` drafting the changelog, and nothing in review looking for a token.
 
 **Off is the default for a project that never answered**, including an existing one adopting this skill. It is an offer, not something to impose on a history that already reads differently.
 
