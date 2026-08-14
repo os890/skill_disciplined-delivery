@@ -93,6 +93,12 @@ Discussing a new part does **not** start an implementation. A brainstorming sess
 
 Asking for a fast PoC or spike is allowed, and you will be asked to confirm it explicitly first: it suspends the flow (no ticket-backed definition, no TDD, no coverage gate) for **one** `spike/<topic>` branch, with a scope and time box. That permission does not carry to the next request. Spike code is throwaway and never reaches the mainline — the real implementation restarts at phase 1 — and what was learned gets written down before the branch is abandoned, since the knowledge is the actual deliverable. Secrets, licensing and production credentials stay off-limits regardless.
 
+### You set how much it takes on
+
+At the start of a session it asks one question — *proactive, or this task only?* — and carries the answer until you change it. **Task-only is what you get if it is never asked or never answered**: exactly the task you gave, followed by a list of what it would have done next, named rather than executed. Proactive lets it chain the obvious follow-on work without checking each time, though the scope gate, the hard stops and every confirmation the flow requires still apply to each item.
+
+Neither setting changes how completely the task itself gets done — it bounds how many things are taken on, not how well the one you asked for is finished.
+
 ### It pushes back before it complies
 
 Agreement is not the default answer. When the approach, scope, tool or trade-off looks wrong, you get the concern, the alternative and what each costs — once, before the work happens, not as a hedge afterwards. Then it does what you decide, in full, and writes the accepted trade-off onto the ticket or into an ADR so the reasoning survives the conversation.

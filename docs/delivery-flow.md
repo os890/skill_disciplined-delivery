@@ -20,7 +20,7 @@ The detail flowcharts declare `layout: elk` in their frontmatter: ELK routes edg
 ```mermaid
 flowchart TB
     OR["<b>Orient</b> in the repo<br/><i>project instructions · ADR titles · NFRs · build gates</i>"]
-    OR --> MI[/"<b>Mirror the topic back and WAIT</b><br/>goal · scope · risks — <i>no design, no tool choice yet</i>"/]
+    OR --> MI[/"<b>Mirror the topic back and WAIT</b><br/>goal · scope · risks — <i>no design, no tool choice yet</i><br/><b>+ working mode:</b> proactive, or this task only?"/]
     MI --> SG["<b>Scope gate</b> — proposed, never silent"]
 
     SG -->|brainstorm| EX["Options, questions, a draft<br/>ticket — <b>never code</b>"]
@@ -404,6 +404,7 @@ mindmap
       ("Mirror the topic back before defining anything")
       ("Silence is an assumption, an explicit none is a decision")
       ("Agreement is not the default answer — push back once, then commit fully")
+      ("Never assume how much work is wanted — agree the mode, then list follow-ons instead of doing them")
     ("Definition before code")
       ("The ticket is the source of truth, not the chat")
       ("Plan committed before implementing")
