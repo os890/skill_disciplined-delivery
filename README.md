@@ -89,6 +89,8 @@ That is enough to begin with. Everything else it asks for, and infers none of it
 4. Whether the project wants the **work-in-progress commit convention** — commit as soon as work exists, even untested, with `UNTESTED` / `WORKING` / `FIXED` on every subject; or plain Conventional Commits once a step is green. Off unless you ask for it.
 5. **Accessibility and security requirements** — any target level, regulation, standard or customer obligation. Whatever you name becomes an NFR with measurable criteria, and only then is tooling chosen for it. "No special requirements" is recorded as an explicit answer rather than left silent.
 
+Where it offers you a list to pick from, the list is never the whole answer: say something else in plain text, split an option, or ask a question back about the question. It asks again with what it learned rather than pushing your reply into one of its own boxes.
+
 It then creates, in this order:
 
 1. `README.md`, `LICENSE`, `CHANGELOG.md`, `.editorconfig`, `.gitattributes`, `docs/` skeleton.

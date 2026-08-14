@@ -170,6 +170,10 @@ Ask interactively (`AskUserQuestion`, batched, 2–4 at a time) until nothing ma
 - **Integration**: which systems, which contracts, versioning and backwards compatibility.
 - **Operations**: configuration, feature flag, rollout and rollback.
 
+**Offered options are never the whole answer space** — and this holds for every question this skill asks, not only phase 2. Say with the options that a different answer in plain text is welcome, and that a question *about* the question is a valid reply. A closed list asserts you already know the alternatives, which is an assumption, and rule 2 forbids it.
+
+So treat "none of these", an answer that splits one option across two, a partial answer, or a counter-question as ordinary rather than awkward: answer what was asked back, then put the question again with what you learned. Forcing a reply into a listed option to keep the flow moving loses exactly the information the loop exists to find.
+
 Do not smooth over a gap with a "reasonable default". A default is a decision, and decisions get written down (phase 3). Refine the ticket with the answers, so the ticket — not the chat log — stays the source of truth.
 
 ### 3. Anchor the requirements
