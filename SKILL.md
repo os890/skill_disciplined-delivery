@@ -115,7 +115,7 @@ What it produces instead: the options considered with their trade-offs, the open
 Once granted, that permission covers **that branch and nothing else**. It does not carry over to the next request, and it never reaches the mainline:
 
 - Work on `spike/<topic>`, never on a ticket branch and never on the default branch.
-- Any PR is marked *not for merge*. Spike code does not become the implementation — the real work restarts at phase 1, and the spike may be read for reference but not fast-forwarded into the mainline.
+- Any PR is marked *not for merge*. Spike code is read for reference, never fast-forwarded into the mainline — the real work restarts at phase 1.
 - Write down what was learned before the branch is abandoned: that is the whole point. It lands as a ticket, an ADR, or a section in `docs/plans/`.
 - Still binding, permission or not: no secrets in code or history, no license violation, no production credentials, no third-party dependency added to the mainline.
 
@@ -134,9 +134,7 @@ Other skills and tooling may be reused wherever they do not contradict these rul
 
 ## Progress tracking
 
-Track the applicable phases with the harness task list (`TaskCreate` at the start, `TaskUpdate` to `in_progress` and `completed` as they flip) so the user sees live progress. One task per phase, in order:
-
-`1 Definition + ticket` · `2 Clarified — no open questions` · `3 Requirements anchored` · `4 Plan committed + verified` · `5 TDD implementation` · `6 Build gate green` · `7 Commit + PR` · `8 Review` · `9 Documentation` · `10 Production-readiness review`
+Track the applicable phases with the harness task list (`TaskCreate` at the start, `TaskUpdate` to `in_progress` and `completed` as they flip) so the user sees live progress. One task per phase, in order, each named after its heading in *Flow* below.
 
 Omit tasks the scope gate removed, and say which and why. When a phase is blocked, leave it `in_progress` and state the blocker in the reply. Don't also re-post Markdown checklists — the task list is the single view *for this session*.
 
@@ -182,7 +180,7 @@ Write the step-by-step plan to `docs/plans/<ticket>.md` and commit it to the wor
 
 Per step, as a Markdown checkbox: what changes, which acceptance criterion or NFR it serves, which tests come first, and the expected observable result.
 
-**The plan is the durable progress record.** Tick a step and commit that change as the step completes, so a later session — or a colleague, or the PR reviewer — can see where the work stands without reading the whole diff. The task list is the live view for this session; the plan file is what survives it.
+**The plan is the durable progress record.** Tick a step and commit that change as the step completes, so a later session can see where the work stands without reading the whole diff.
 
 Then verify the plan against the definitions and answer explicitly:
 
@@ -226,7 +224,7 @@ Reuse the project's existing review tooling for the mechanical pass where it doe
 After the code is settled, check documentation for both missing and outdated content — see `references/documentation.md`.
 
 - **End-user documentation** (`docs/user/`, structured per **Diátaxis**) for every user-visible change, with screenshots of the real build, or a clearly-marked mockup where the UI does not exist yet. A purely technical item may skip it; say so explicitly.
-- **`CHANGELOG.md`** entry for anything a user or an integrator would notice, including a breaking change and its migration note.
+- **`CHANGELOG.md`** — confirm the phase 7 entry still matches what actually shipped.
 - **Technical documentation** always, always with Mermaid diagrams chosen to fit the subject. Structure it as **arc42** under `docs/technical/arc42/` — updating the affected sections of the system's document, not creating a new one per item. §9 indexes the ADRs and §10 the NFRs by link, never by copy.
 
 ### 10. Production-readiness review
