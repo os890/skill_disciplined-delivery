@@ -1,15 +1,15 @@
 # Disciplined Delivery — the approach, visualized
 
-Seven views of the same discipline, nine diagrams. Source is inline Mermaid so it diffs like code and renders on GitHub; rendered PNGs live in `diagrams/`, regenerated with:
+Seven views of the same discipline, nine diagrams. Source is inline Mermaid so it diffs and reviews like code; the rendered PNGs live in `docs/diagrams/`, regenerated from the skill root with:
 
 ```sh
 podman run --rm --userns=keep-id -v "$PWD:/data:z" docker.io/minlag/mermaid-cli \
-  -i disciplined-delivery-flow.md -o diagrams/flow.md -e png -s 3 -b white
+  -i docs/delivery-flow.md -o docs/diagrams/delivery-flow.md -e png -s 3 -b white
 ```
 
 The flowcharts declare `layout: elk` in their frontmatter: ELK routes edges orthogonally and minimises crossings, which the default (dagre) engine does not.
 
-**GitHub does not register the ELK plugin**, so the fences below fall back to dagre there and render with crossings — nothing errors, it just looks worse. The PNGs in `diagrams/` are the ELK-rendered, crossing-free versions and are the ones to look at; `diagrams/flow.md` is this same document with the fences replaced by those images, and is what to open on GitHub.
+**GitHub does not register the ELK plugin**, so the fences below fall back to dagre there and render with crossings — nothing errors, it just looks worse. [`docs/diagrams/delivery-flow.md`](diagrams/delivery-flow.md) is this same document with the fences replaced by the ELK-rendered images, and is the one to open on GitHub.
 
 ---
 
