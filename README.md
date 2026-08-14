@@ -23,12 +23,16 @@ Verify with `/disciplined-delivery` in Claude Code, or just start a work item: t
 
 The skill is stack-agnostic on purpose: every default names the alternatives — Maven and Gradle, `npm ci` and `cargo deny`, Spotless and `gofmt` and `dotnet format`. That breadth is what makes it reusable, and it costs nothing in the flow itself. It does cost something in the references a project actually opens, where a paragraph about `cargo-semver-checks` is noise for a team that will never write Rust.
 
-So for a project whose stack is settled, keep a **pruned copy** beside the project rather than the general one:
+So for a project whose stack is settled, keep a **pruned copy** beside the project rather than the general one — and **ask Claude to produce it**, rather than editing seven files by hand. It has the skill loaded already, and the work is mechanical:
 
-1. Copy the directory to `<project>/.claude/skills/disciplined-delivery/`. Drop `README.md` and `docs/` — neither is loaded by the skill, so they are pure weight in a project copy.
-2. Delete the alternatives you will never use: the *Elsewhere* column of the build-gates table, and the per-language lists for formatter, property tests, mutation testing and the release mechanism.
-3. Pin what is left. `| Formatting | The language's default formatter |` becomes `| Formatting | **Spotless** |`; the platform row names your actual framework and version.
-4. Leave `SKILL.md` alone. It names no tools by design — in practice a stack prune touches zero lines of it, which is the check that the extraction into `references/` was done properly.
+> Copy this skill into `<project>/.claude/skills/`, then strip everything that does not apply to our stack: Java 25, Maven, Spring Boot, PostgreSQL, Angular. Pin the defaults to those, and tell me anything the pinning contradicts.
+
+What that should produce, and what to check when it reports back:
+
+1. The directory copied to `<project>/.claude/skills/disciplined-delivery/`, without `README.md` and `docs/` — neither is loaded by the skill, so both are pure weight in a project copy.
+2. The alternatives you will never use deleted: the *Elsewhere* column of the build-gates table, and the per-language lists for formatter, property tests, mutation testing and the release mechanism.
+3. What is left pinned: `| Formatting | The language's default formatter |` becomes `| Formatting | **Spotless** |`, and the platform row names your actual framework and version.
+4. `SKILL.md` untouched. It names no tools by design — in practice a stack prune touches zero lines of it, which is the check that the extraction into `references/` was done properly.
 
 | Prune | Keep |
 | --- | --- |
@@ -39,7 +43,11 @@ So for a project whose stack is settled, keep a **pruned copy** beside the proje
 
 **Read the rules you pin, because pinning exposes contradictions.** The test standards say migrations must never be verified against an embedded database — the example given is that a green migration test on H2 proves nothing about PostgreSQL. Pin a project whose *production* engine is that embedded database and the rule inverts: there, it is the real thing and the warning does not apply. A rule that was right in general can be wrong once the stack is fixed, and the prune is when you find out.
 
-**Keep the copy derivable, not hand-maintained.** After changing the skill, copy the stack-free files over wholesale and re-apply the prune to the rest, then diff the copy against the original and confirm only the files you meant to change differ. Where a second project shares most of a stack, derive its copy from the first rather than pruning again — that is what keeps two projects saying the same thing about the parts they share:
+**Keep the copy derivable, not hand-maintained.** When the skill changes, ask for the copy to be re-derived rather than patched:
+
+> The skill changed upstream. Update this project's copy without re-adding anything we pruned, and diff it afterwards to show me only the files that should differ.
+
+Copying the stack-free files over wholesale and re-applying the prune to the rest is what keeps that cheap, and the diff is what proves nothing crept back in. Where a second project shares most of a stack, ask for its copy to be derived from the first rather than pruned again — that is what keeps two projects saying the same thing about the parts they share:
 
 ```
 orders-service/.claude/skills/disciplined-delivery/    # Java · Maven · PostgreSQL · Angular
