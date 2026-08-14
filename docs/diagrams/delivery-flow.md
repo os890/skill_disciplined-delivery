@@ -1,6 +1,6 @@
 # Disciplined Delivery — the approach, visualized
 
-Seven views of the same discipline, nine diagrams. Source is inline Mermaid so it diffs and reviews like code; the rendered PNGs live in `docs/diagrams/`, regenerated from the skill root with:
+Seven views of the same discipline, ten diagrams. Source is inline Mermaid so it diffs and reviews like code; the rendered PNGs live in `docs/diagrams/`, regenerated from the skill root with:
 
 ```sh
 podman run --rm --userns=keep-id -v "$PWD:/data:z" docker.io/minlag/mermaid-cli \
@@ -35,9 +35,13 @@ The flowcharts declare `layout: elk` in their frontmatter: ELK routes edges orth
 
 ![diagram](./delivery-flow-3.png)
 
-Hard stops that trigger the same loop:
+Disagreeing has two modes, and they are not the same move:
 
 ![diagram](./delivery-flow-4.png)
+
+Hard stops — where the answer to that first question is *no*:
+
+![diagram](./delivery-flow-5.png)
 
 ---
 
@@ -45,7 +49,7 @@ Hard stops that trigger the same loop:
 
 *Take away: the live task list is a view, never the record — a resumption is reconstructed from the repository and verified by running the build.*
 
-![diagram](./delivery-flow-5.png)
+![diagram](./delivery-flow-6.png)
 
 ---
 
@@ -53,19 +57,19 @@ Hard stops that trigger the same loop:
 
 *Take away: red is always fixed in the code — the two tempting shortcuts both require the user's agreement first.*
 
-![diagram](./delivery-flow-6.png)
+![diagram](./delivery-flow-7.png)
 
 Coverage behaves as a ratchet rather than a cliff:
 
-![diagram](./delivery-flow-7.png)
+![diagram](./delivery-flow-8.png)
 
 ---
 
 ## 6. The decision rules behind the tool choices
 
-*Take away: precedence, the open-source bar and the copyleft split resolve most tooling questions without opening a reference file.*
+*Take away: what the project already uses settles most tooling questions on the spot — the default list only fills a gap.*
 
-![diagram](./delivery-flow-8.png)
+![diagram](./delivery-flow-9.png)
 
 ---
 
@@ -73,6 +77,6 @@ Coverage behaves as a ratchet rather than a cliff:
 
 *Take away: five convictions generate everything above.*
 
-![diagram](./delivery-flow-9.png)
+![diagram](./delivery-flow-10.png)
 
 > `mindmap` is a newer Mermaid diagram type and GitHub can lag Mermaid releases — verify it renders with one throwaway commit before relying on it, or fall back to a `flowchart LR`.

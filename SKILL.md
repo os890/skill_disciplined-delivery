@@ -22,11 +22,14 @@ This is **not** a hard stop. Push back once, then do what the user decides — i
 
 ## Reference files
 
-This file is the flow. Read a reference when the situation arises — not upfront. The trigger is the situation, not the phase number: several references are needed at more than one point.
+This file is the flow. Read a reference **when the situation arises** — the trigger is the situation, not the phase number, and several are needed at more than one point.
+
+**Never preload the set to "know the rules" first.** An unread reference costs nothing; one read speculatively costs context for the whole task. Open each at the moment its row applies, not before.
 
 | Situation | Read |
 | --- | --- |
 | **About to introduce a tool the project does not already use** | `tool-defaults.md` — what the project already uses wins without opening it |
+| A brainstorming session, or a PoC/spike was requested | `exploration.md` |
 | Initializing a project; scaffolding or gates missing | `project-setup.md` |
 | Writing an ADR or an NFR (phase 3) | `documentation.md` § Architecture decision records |
 | Designing a contract, planning, or writing code and tests (phases 4–5) | `code-and-tests.md` |
@@ -47,10 +50,12 @@ A session begins with no memory of the project. Two situations, both cheap:
 Before mirroring a topic back, read enough of the project to speak about it accurately, and no more than that:
 
 - `CLAUDE.md` and any project instructions — they outrank this skill.
-- The **ADR titles** in `docs/adr/`, and in full any ADR the topic touches.
+- The **ADR titles** in `docs/adr/` — the file names, from a directory listing. Open one in full only when the topic touches it.
 - `docs/requirements/nfr.md`.
 - arc42 §1, §3 and §5 for the shape of the system; more only if the topic needs it.
 - The build file: which gates exist, which coverage threshold is set, which module structure is in place.
+
+That is a handful of reads, not a survey. If orienting is turning into reading the repository, you have gone too far — stop and start the topic.
 
 This is what makes "reuse existing ADRs" and the precedence rule real rather than aspirational. State briefly what you found that constrains the topic — an existing ADR that already decides part of it is the cheapest possible finding.
 
@@ -104,20 +109,11 @@ Anything else — including "it's just a small feature" — takes the full flow.
 
 ## Exploration: brainstorming and spikes
 
-**A brainstorming session never turns into an implementation by itself.** Thinking about a new part is welcome and cheap; it produces input for phase 1, not code. During one: no files changed, no branch created, no task list of delivery phases.
+**A brainstorming session never turns into an implementation by itself** — no files changed, no branch, no delivery task list. It produces input for phase 1: options and trade-offs, open questions, candidate ADRs and NFRs, a draft work item. An idea that felt settled in discussion is not a definition, so the clarification loop still runs when it becomes a ticket.
 
-What it produces instead: the options considered with their trade-offs, the open questions, the decisions that would need an ADR, the quality attributes that would need an NFR, and a draft work item. Close the session by naming what would become a ticket — then the flow starts at phase 1 with those answers in hand, and the clarification loop still runs. An idea that felt settled in discussion is not a definition.
+**A PoC or spike suspends this flow and needs explicit permission for exactly one `spike/<topic>` branch** — asked for per request, never carried over, never reaching the mainline. The code is throwaway; the knowledge written down before the branch is abandoned is the deliverable.
 
-**A fast proof of concept is a suspension of this flow, and needs explicit permission for exactly one branch.** If asked for a quick PoC, spike or "just try whether this works", ask first:
-
-> This would suspend the normal flow — no ticket-backed definition, no TDD, no coverage gate — for the branch `spike/<topic>` only. The code is throwaway; the knowledge is the deliverable. Scope and time box: <…>. Is that OK for this branch?
-
-Once granted, that permission covers **that branch and nothing else**. It does not carry over to the next request, and it never reaches the mainline:
-
-- Work on `spike/<topic>`, never on a ticket branch and never on the default branch.
-- Any PR is marked *not for merge*. Spike code is read for reference, never fast-forwarded into the mainline — the real work restarts at phase 1.
-- Write down what was learned before the branch is abandoned: that is the whole point. It lands as a ticket, an ADR, or a section in `docs/plans/`.
-- Still binding, permission or not: no secrets in code or history, no license violation, no production credentials, no third-party dependency added to the mainline.
+Read `references/exploration.md` before starting either — what a session produces, the permission to ask for, and what stays binding on a spike branch.
 
 ## Precedence
 
@@ -245,7 +241,7 @@ Stop, say so, and involve the user when:
 - A phase would be skipped without confirmation.
 - A license must be chosen — that is the user's decision, never yours.
 - A **third-party dependency** would be added that the platform does not already provide.
-- A **tool the project does not already use** would be introduced — build plugin, framework, linter, diagram format, container runtime — without `references/tool-defaults.md` having been read first, or an established one would be swapped without an ADR.
+- An **established tool would be swapped** for a different one without an ADR.
 - A **spike or PoC** would start without explicit per-branch permission, or spike code would reach the mainline.
 - A brainstorming session is about to become an implementation without passing through phase 1.
 - The **shared-understanding summary** for a new topic has not been confirmed yet.

@@ -1,6 +1,6 @@
 # Disciplined Delivery — the approach, visualized
 
-Seven views of the same discipline, nine diagrams. Source is inline Mermaid so it diffs and reviews like code; the rendered PNGs live in `docs/diagrams/`, regenerated from the skill root with:
+Seven views of the same discipline, ten diagrams. Source is inline Mermaid so it diffs and reviews like code; the rendered PNGs live in `docs/diagrams/`, regenerated from the skill root with:
 
 ```sh
 podman run --rm --userns=keep-id -v "$PWD:/data:z" docker.io/minlag/mermaid-cli \
@@ -131,7 +131,33 @@ flowchart LR
     style GO fill:#27ae60,color:#fff
 ```
 
-Hard stops that trigger the same loop:
+Disagreeing has two modes, and they are not the same move:
+
+```mermaid
+---
+config:
+  layout: elk
+  elk:
+    mergeEdges: true
+    nodePlacementStrategy: BRANDES_KOEPF
+---
+flowchart TD
+    R(["The request looks wrong<br/><i>approach · scope · tool ·<br/>sequencing · trade-off</i>"]) --> Q{"Can the work<br/>proceed at all?"}
+
+    Q -->|"no — it is a hard stop"| HS["<b>Block</b><br/>state the blocker,<br/>continue only what is independent"]
+    Q -->|"yes — you just think<br/>it is the wrong call"| PB["<b>Push back — once</b><br/>the concern · the alternative ·<br/>what each costs<br/><i>said before doing it, not after</i>"]
+
+    PB --> D{"User's answer"}
+    D -->|"they agree"| NEW["Do the better thing"]
+    D -->|"they reaffirm"| FULL["Do what they asked — <b>in full</b>,<br/>not a hedged version"]
+    FULL --> REC["Record the trade-off<br/>ticket, or ADR if architectural<br/><i>an accepted trade-off is still a decision</i>"]
+
+    style HS fill:#c0392b,color:#fff
+    style PB fill:#8e44ad,color:#fff
+    style REC fill:#ecf0f1,stroke:#95a5a6,color:#2c3e50
+```
+
+Hard stops — where the answer to that first question is *no*:
 
 ```mermaid
 ---
@@ -151,6 +177,7 @@ flowchart LR
     HS --- H6["A phase would be skipped unconfirmed"]
     HS --- H7["A license must be chosen"]
     HS --- H8["A third-party dependency would be added"]
+    HS --- H8b["An <b>established tool</b> would be swapped<br/>without an ADR"]
     HS --- H9["Spike starts without permission,<br/>or spike code reaches mainline"]
     HS --- H10["Brainstorming becomes implementation"]
     HS --- H11["Shared understanding not yet confirmed"]
@@ -264,7 +291,7 @@ flowchart LR
 
 ## 6. The decision rules behind the tool choices
 
-*Take away: precedence, the open-source bar and the copyleft split resolve most tooling questions without opening a reference file.*
+*Take away: what the project already uses settles most tooling questions on the spot — the default list only fills a gap.*
 
 ```mermaid
 ---
@@ -275,8 +302,10 @@ config:
     nodePlacementStrategy: BRANDES_KOEPF
 ---
 flowchart TD
-    subgraph DEP["Adding a library"]
-        D1{"On the platform surface<br/>or a named default?"}
+    subgraph DEP["Reaching for a tool or a library"]
+        E1{"Does the project<br/><b>already use</b> one for this?"}
+        E1 -->|yes| E2["<b>Use it.</b> The default list is<br/>for a gap, not a migration target.<br/><i>Swapping it = own work item + ADR</i>"]
+        E1 -->|no| D1{"On the platform surface<br/>or a named default?"}
         D1 -->|yes| D2["Already approved"]
         D1 -->|no| D3["<b>A proposal</b> — name what it buys<br/>and what it replaces, then WAIT"]
     end
@@ -328,6 +357,7 @@ mindmap
       ("Ask the moment something is unclear, not later")
       ("Mirror the topic back before defining anything")
       ("Silence is an assumption, an explicit none is a decision")
+      ("Agreement is not the default answer — push back once, then commit fully")
     ("Definition before code")
       ("The ticket is the source of truth, not the chat")
       ("Plan committed before implementing")

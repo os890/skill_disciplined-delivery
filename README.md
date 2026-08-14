@@ -26,6 +26,7 @@ Verify with `/disciplined-delivery` in Claude Code, or just start a work item: t
 | `references/documentation.md` | arc42, Diátaxis, diagrams, screenshots, changelog, visual assets. |
 | `references/review.md` | The review brief, handed to the review agent verbatim. |
 | `references/release-and-automation.md` | Cutting a release, and turning repeated manual steps into portable scripts. |
+| `references/exploration.md` | What a brainstorming session produces, and the per-branch permission a spike needs. |
 | `docs/delivery-flow.md` | The flow as diagrams — Mermaid source, nine of them. |
 | `docs/diagrams/delivery-flow.md` | The same document with the fences replaced by rendered PNGs. **Open this one on GitHub**, which cannot render the ELK layout the source asks for. |
 
