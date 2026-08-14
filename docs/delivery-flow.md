@@ -26,10 +26,12 @@ flowchart TB
     SG -->|brainstorm| EX["Options, questions, a draft<br/>ticket — <b>never code</b>"]
     SG -->|spike| SP["One time-boxed <code>spike/</code> branch,<br/>throwaway — <b>never the mainline</b>"]
     SG -->|"small, confirmed"| RP["<b>Reduced path</b> — ticket →<br/>TDD → green build → PR"]
-    SG ==>|"<b>default</b>"| DEF
+    SG ==>|"<b>default</b>"| HUB
 
-    EX -.->|"becomes a ticket"| DEF
-    SP -.->|"real work restarts"| DEF
+    EX -.->|"becomes a ticket"| HUB
+    SP -.->|"real work restarts"| HUB
+
+    HUB(["<b>A ticket-backed work item</b>"]) --> DEF
 
     subgraph FULL["The full flow — ten phases"]
         direction LR
