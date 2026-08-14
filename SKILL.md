@@ -121,16 +121,10 @@ Other skills and tooling may be reused wherever they do not contradict these rul
 
 ## Tool defaults
 
-**A tool the project already uses wins.** The default list decides only what to *introduce* where nothing exists yet — it is never a reason to replace a working coverage tool, formatter, test framework or build plugin. Use what is there. Swapping an established tool is its own work item with an ADR behind it, never a side effect of other work.
+**A tool the project already uses wins.** `references/tool-defaults.md` decides only what to *introduce* where nothing exists yet — never a reason to replace a working formatter, coverage tool or test framework. Swapping an established one is its own work item with an ADR, not a side effect. Read the list before introducing a tool the project lacks; reaching for your own habit instead is an invisible decision.
 
-So the list matters at exactly one moment: **before introducing a tool the project does not already have, read `references/tool-defaults.md`** — version control, commit format, test frameworks, gates, diagrams, containers, docs, coverage thresholds — and deviate from it only with a recorded reason. Reaching for your own habit instead is an invisible decision.
-
-Two rules that hold whichever tool it is:
-
-- **Automate the second time.** Anything done by hand twice becomes a committed script under `scripts/` — *unless a tool or an existing script in the project already does it*, which is the first thing to check. Prefer a tool over a script, a script over a manual step, and never the same manual step twice (`references/release-and-automation.md`).
-- **Never install a heavyweight tool on the host on your own initiative.** Run it from its official container image with the workspace mounted — **Podman** first, Docker Engine/CLI as fallback. If neither the tool nor a container runtime is available, stop and ask; never silently skip the screenshots or the end-to-end tests.
-
-A **copyleft (GPL/AGPL/LGPL) runtime dependency is a blocker** — report it, never resolve it alone — while copyleft *build-time* tooling is fine, since it is not part of the artifact (`references/project-setup.md` § License compatibility). Every default must be open source and locally runnable with no subscription; GitHub is the single accepted exception.
+- **Automate the second time.** A manual step done twice becomes a committed script under `scripts/` — *unless a tool or an existing script in the project already does it*, which is the first thing to check (`references/release-and-automation.md`).
+- **Never install a heavyweight tool on the host.** Run it from its official container image with the workspace mounted — **Podman** first, Docker Engine/CLI as fallback. If neither the tool nor a container runtime is available, stop and ask; never silently skip the screenshots or the end-to-end tests.
 
 ## Progress tracking
 
