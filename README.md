@@ -19,6 +19,35 @@ The directory name must stay `disciplined-delivery` — it has to match the `nam
 
 Verify with `/disciplined-delivery` in Claude Code, or just start a work item: the skill triggers on "implement", "add feature", "fix this bug/finding" and "start this ticket".
 
+## Trimming it to one stack
+
+The skill is stack-agnostic on purpose: every default names the alternatives — Maven and Gradle, `npm ci` and `cargo deny`, Spotless and `gofmt` and `dotnet format`. That breadth is what makes it reusable, and it costs nothing in the flow itself. It does cost something in the references a project actually opens, where a paragraph about `cargo-semver-checks` is noise for a team that will never write Rust.
+
+So for a project whose stack is settled, keep a **pruned copy** beside the project rather than the general one:
+
+1. Copy the directory to `<project>/.claude/skills/disciplined-delivery/`. Drop `README.md` and `docs/` — neither is loaded by the skill, so they are pure weight in a project copy.
+2. Delete the alternatives you will never use: the *Elsewhere* column of the build-gates table, and the per-language lists for formatter, property tests, mutation testing and the release mechanism.
+3. Pin what is left. `| Formatting | The language's default formatter |` becomes `| Formatting | **Spotless** |`; the platform row names your actual framework and version.
+4. Leave `SKILL.md` alone. It names no tools by design — in practice a stack prune touches zero lines of it, which is the check that the extraction into `references/` was done properly.
+
+| Prune | Keep |
+| --- | --- |
+| `references/project-setup.md` — the *Elsewhere* gates column | `SKILL.md` — no tool names in it |
+| `references/tool-defaults.md` — generic rows, replaced by pinned ones | `references/documentation.md` — arc42, Diátaxis and Mermaid are language-free |
+| `references/code-and-tests.md` — other languages' formatters, test and mutation tools | `references/review.md` — the review brief is about conformance, not tooling |
+| `references/release-and-automation.md` — the ecosystem table, down to your one release mechanism | `references/exploration.md` — brainstorming and spikes are stack-free |
+
+**Read the rules you pin, because pinning exposes contradictions.** The test standards say migrations must never be verified against an embedded database — the example given is that a green migration test on H2 proves nothing about PostgreSQL. Pin a project whose *production* engine is that embedded database and the rule inverts: there, it is the real thing and the warning does not apply. A rule that was right in general can be wrong once the stack is fixed, and the prune is when you find out.
+
+**Keep the copy derivable, not hand-maintained.** After changing the skill, copy the stack-free files over wholesale and re-apply the prune to the rest, then diff the copy against the original and confirm only the files you meant to change differ. Where a second project shares most of a stack, derive its copy from the first rather than pruning again — that is what keeps two projects saying the same thing about the parts they share:
+
+```
+orders-service/.claude/skills/disciplined-delivery/    # Java · Maven · PostgreSQL · Angular
+billing-portal/.claude/skills/disciplined-delivery/    # same, minus the frontend
+```
+
+The token saving is modest — most references shrink by well under a tenth. The point is different: a model that cannot see a Rust alternative cannot suggest one, and a reviewer reading the pinned copy sees the project's actual rules rather than a menu.
+
 ## Files
 
 | File | Role |
