@@ -117,3 +117,16 @@ None of these fail a build, which is why they survive: they work perfectly for t
 ## Triage
 
 Every real finding gets an outcome, decided with the user: **fix now**, **ticket it**, or **reject with a reason**. Nothing is left in the "mentioned once and forgotten" state.
+
+## After the fixes — cross-check
+
+Findings are found against one diff and fixed one at a time, so by the end **the thing that was reviewed no longer exists**: every fix was written against a state the others have since changed. Before phase 8 is closed, look at the result as a whole rather than as a list of resolved items.
+
+- **Run the full build again** — every gate, not just the tests nearest the fixes.
+- **Read the combined diff as one change.** The reviewer saw the original; nobody has yet seen this one.
+- **Do the fixes contradict each other?** Two findings in the same area can be fixed in opposite directions, a simplification can undo a correctness fix, and a signature changed for one fix can leave another's call site correct only by accident.
+- **Did anything regress?** A finding fixed early can be reintroduced by a later fix in the same file.
+- **Do the definitions still hold?** Acceptance criteria, ADRs, NFRs — a run of fixes can drift a change away from what it was meant to do while every individual fix looks right.
+- **Do the docs say one thing or three?** Several fixes each appending a note leaves the documentation, the changelog and an ADR overlapping or disagreeing.
+
+Where the fixes were substantial, that is a new diff and earns the conformance checks again rather than a glance.

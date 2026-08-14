@@ -250,6 +250,8 @@ Reuse the project's existing review tooling for the mechanical pass where it doe
 
 "No findings" is a valid, useful result — report it plainly rather than manufacturing filler. Triage every real finding with the user: fix now, ticket it, or reject with a reason.
 
+**Once findings are fixed, cross-check before closing the phase.** Each fix was written against a state the others have since changed, so re-run the full build and read the combined diff as one change rather than as a list of resolved items (`references/review.md`).
+
 ### 9. Documentation
 
 After the code is settled, check documentation for both missing and outdated content — see `references/documentation.md`.
