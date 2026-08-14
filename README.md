@@ -23,9 +23,11 @@ Verify with `/disciplined-delivery` in Claude Code, or just start a work item: t
 
 The skill is stack-agnostic on purpose: every default names the alternatives — Maven and Gradle, `npm ci` and `cargo deny`, Spotless and `gofmt` and `dotnet format`. That breadth is what makes it reusable, and it costs nothing in the flow itself. It does cost something in the references a project actually opens, where a paragraph about `cargo-semver-checks` is noise for a team that will never write Rust.
 
-So for a project whose stack is settled, keep a **pruned copy** beside the project rather than the general one — and **ask Claude to produce it**, rather than editing seven files by hand. It has the skill loaded already, and the work is mechanical:
+So for a project whose stack is settled, keep a **pruned copy** beside the project rather than the general one — and **ask Claude to produce it**, rather than editing seven files by hand.
 
-> Copy this skill into `<project>/.claude/skills/`, then strip everything that does not apply to our stack: Java 25, Maven, Spring Boot, PostgreSQL, Angular. Pin the defaults to those, and tell me anything the pinning contradicts.
+Do that **from a session in the skill's own repository, pointed at the target project**. Not from inside the target project: a session there only ever sees the pruned copy, which is the whole point of making one — it cannot prune what it can no longer read, and it would be rewriting the rules it is working under.
+
+> Copy this skill to `<path-to-project>/.claude/skills/disciplined-delivery/`, then strip everything in the copy that does not apply to that project's stack: Java 25, Maven, Spring Boot, PostgreSQL, Angular. Pin the defaults to those, and tell me anything the pinning contradicts.
 
 What that should produce, and what to check when it reports back:
 
@@ -43,9 +45,9 @@ What that should produce, and what to check when it reports back:
 
 **Read the rules you pin, because pinning exposes contradictions.** The test standards say migrations must never be verified against an embedded database — the example given is that a green migration test on H2 proves nothing about PostgreSQL. Pin a project whose *production* engine is that embedded database and the rule inverts: there, it is the real thing and the warning does not apply. A rule that was right in general can be wrong once the stack is fixed, and the prune is when you find out.
 
-**Keep the copy derivable, not hand-maintained.** When the skill changes, ask for the copy to be re-derived rather than patched:
+**Keep the copy derivable, not hand-maintained.** When the skill changes, go back to that same session — in the skill's repository — and ask for each project's copy to be re-derived rather than patched:
 
-> The skill changed upstream. Update this project's copy without re-adding anything we pruned, and diff it afterwards to show me only the files that should differ.
+> The skill has changed. Update the copy at `<path-to-project>/.claude/skills/disciplined-delivery/` without re-adding anything we pruned there, and diff it afterwards to show me only the files that should differ.
 
 Copying the stack-free files over wholesale and re-applying the prune to the rest is what keeps that cheap, and the diff is what proves nothing crept back in. Where a second project shares most of a stack, ask for its copy to be derived from the first rather than pruned again — that is what keeps two projects saying the same thing about the parts they share:
 
