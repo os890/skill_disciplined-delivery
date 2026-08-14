@@ -19,10 +19,9 @@ The detail flowcharts declare `layout: elk` in their frontmatter: ELK routes edg
 
 ```mermaid
 flowchart TB
-    subgraph START[" "]
-        direction LR
-        OR["<b>Orient</b><br/><i>instructions · ADRs<br/>NFRs · gates</i>"] --> MI[/"<b>Mirror it back<br/>and WAIT</b><br/><i>no design yet</i>"/] --> SG{"<b>Scope<br/>gate</b>"}
-    end
+    OR["<b>Orient</b> in the repo<br/><i>project instructions · ADR titles · NFRs · build gates</i>"]
+    OR --> MI[/"<b>Mirror the topic back and WAIT</b><br/>goal · scope · risks — <i>no design, no tool choice yet</i>"/]
+    MI --> SG{"<b>Scope gate</b> — proposed, never silent"}
 
     SG -->|brainstorm| EX["Options, questions, a draft<br/>ticket — <b>never code</b>"]
     SG -->|spike| SP["One time-boxed <code>spike/</code> branch,<br/>throwaway — <b>never the mainline</b>"]
@@ -50,7 +49,6 @@ flowchart TB
         R1 ~~~ R2 ~~~ R3 ~~~ R4
     end
 
-    style START fill:none,stroke:none
     style MI fill:#2c3e50,color:#fff
     style SG fill:#8e44ad,color:#fff
     style DONE fill:#27ae60,color:#fff
