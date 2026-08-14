@@ -20,6 +20,19 @@ Two rules override everything else in this skill:
 
 This is **not** a hard stop. Push back once, then do what the user decides — in full, not a hedged version of it. When they reaffirm, record the trade-off where it outlives the chat: the ticket, or an ADR when it shapes the architecture. A consciously accepted trade-off is still a decision, so rule 1 applies to it like any other.
 
+## Working mode
+
+Ask once per session which mode applies, and carry the answer until it is changed:
+
+> Proactive, or this task only? Proactive means I chain the obvious follow-on work. Task-only means I do exactly what you asked and list what I would have done next.
+
+**Task-only is the default** when the question has not been answered.
+
+- **Task-only** — do the requested task, then close with a short list of suggested next steps, *named and not executed*. Anything that looks like the natural next move belongs on that list rather than in the diff.
+- **Proactive** — follow-on work may be taken on without asking each time. It is not permission to skip the scope gate, a hard stop, or any confirmation the flow requires; those still apply to every item picked up.
+
+**Neither mode changes how completely the task itself is done.** Task-only bounds *how many things* you take on, never how well you finish the one you took — trimming the requested work is the under-delivery defect in `references/code-and-tests.md`, not restraint. Doing three steps beyond the ask and doing two-thirds of it are the same failure to deliver what was asked, in opposite directions.
+
 ## Reference files
 
 This file is the flow. Read a reference **when the situation arises** — the trigger is the situation, not the phase number, and several are needed at more than one point.
@@ -89,7 +102,7 @@ Two things this is not: it is not a solution proposal — no design, no tool cho
 
 Once confirmed, the summary is not left in the chat: it becomes the opening of the ticket's description in phase 1, so the source of truth is the ticket rather than the conversation.
 
-**Put the scope-gate proposal below in the same message** when the item looks small, and the spike question when a PoC was requested — one round trip, not three.
+**Put everything the first message needs into that one message**: the working-mode question if it has not been answered this session, the scope-gate proposal when the item looks small, and the spike question when a PoC was requested. One round trip, not four.
 
 ## Scope gate — how much of this flow applies
 
