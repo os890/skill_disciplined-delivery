@@ -88,6 +88,10 @@ Discussing a new part does **not** start an implementation. A brainstorming sess
 
 Asking for a fast PoC or spike is allowed, and you will be asked to confirm it explicitly first: it suspends the flow (no ticket-backed definition, no TDD, no coverage gate) for **one** `spike/<topic>` branch, with a scope and time box. That permission does not carry to the next request. Spike code is throwaway and never reaches the mainline — the real implementation restarts at phase 1 — and what was learned gets written down before the branch is abandoned, since the knowledge is the actual deliverable. Secrets, licensing and production credentials stay off-limits regardless.
 
+### It pushes back before it complies
+
+Agreement is not the default answer. When the approach, scope, tool or trade-off looks wrong, you get the concern, the alternative and what each costs — once, before the work happens, not as a hedge afterwards. Then it does what you decide, in full, and writes the accepted trade-off onto the ticket or into an ADR so the reasoning survives the conversation.
+
 ### What it will stop for
 
 - An open question from the clarification phase.

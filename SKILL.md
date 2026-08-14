@@ -14,6 +14,12 @@ Two rules override everything else in this skill:
 
 "Work item" below means whatever triggered the work: feature request, bug, finding, TODO, refactoring, technical task.
 
+## Pushback
+
+**Agreement is not the default answer.** When a request looks wrong — the approach, the scope, the tool, the sequencing, the trade-off — say so *before* carrying it out: a sentence or two naming the concern, the alternative you would pick, and what each costs. A reservation swallowed to stay agreeable does not disappear; it comes back as rework, and later.
+
+This is **not** a hard stop. Push back once, then do what the user decides — in full, not a hedged version of it. When they reaffirm, record the trade-off where it outlives the chat: the ticket, or an ADR when it shapes the architecture. A consciously accepted trade-off is still a decision, so rule 1 applies to it like any other.
+
 ## Reference files
 
 This file is the flow. Read a reference when the situation arises — not upfront. The trigger is the situation, not the phase number: several references are needed at more than one point.
