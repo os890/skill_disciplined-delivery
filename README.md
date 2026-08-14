@@ -2,6 +2,10 @@
 
 A reusable Claude Code skill that enforces one engineering discipline across projects: nothing gets implemented that isn't defined, nothing ships without a green build, and no decision is made invisibly.
 
+![The whole approach: orient and mirror the topic back, pass the scope gate, then either the reduced path or ten phases from Define to Finish — with four rules running underneath every phase: no invisible decisions, no assumptions, push back once, and nothing durable living in the session.](docs/diagrams/delivery-flow-1.png)
+
+Ten more diagrams break this down — routing, the phases and their artifacts, the decision loop, hard stops, session state, the build gate and the tooling rules: **[docs/diagrams/delivery-flow.md](docs/diagrams/delivery-flow.md)**.
+
 ## Install
 
 Copy the whole `disciplined-delivery/` directory to one of:

@@ -1,15 +1,61 @@
 # Disciplined Delivery — the approach, visualized
 
-Seven views of the same discipline, ten diagrams. Source is inline Mermaid so it diffs and reviews like code; the rendered PNGs live in `docs/diagrams/`, regenerated from the skill root with:
+Eight views of the same discipline, eleven diagrams — the first is the overview embedded in the README. Source is inline Mermaid so it diffs and reviews like code; the rendered PNGs live in `docs/diagrams/`, regenerated from the skill root with:
 
 ```sh
 podman run --rm --userns=keep-id -v "$PWD:/data:z" docker.io/minlag/mermaid-cli \
   -i docs/delivery-flow.md -o docs/diagrams/delivery-flow.md -e png -s 3 -b white
 ```
 
-The flowcharts declare `layout: elk` in their frontmatter: ELK routes edges orthogonally and minimises crossings, which the default (dagre) engine does not.
+The detail flowcharts declare `layout: elk` in their frontmatter: ELK routes edges orthogonally and minimises crossings, which the default (dagre) engine does not. **The overview in §0 deliberately does not** — it has no crossings to remove, and dagre is the engine that honours `direction` inside a subgraph, which is what puts the phase band and the rules band on their sides. It therefore renders correctly on GitHub as a fence, unlike the rest.
 
 **GitHub does not register the ELK plugin**, so the fences below fall back to dagre there and render with crossings — nothing errors, it just looks worse. [`docs/diagrams/delivery-flow.md`](diagrams/delivery-flow.md) is this same document with the fences replaced by the ELK-rendered images, and is the one to open on GitHub.
+
+---
+
+## 0. The whole approach on one page
+
+*Take away: definitions come before code, quality gates decide when it is done, and four rules run underneath every phase.*
+
+```mermaid
+flowchart TB
+    subgraph START[" "]
+        direction LR
+        OR["<b>Orient</b><br/><i>instructions · ADRs<br/>NFRs · gates</i>"] --> MI[/"<b>Mirror it back<br/>and WAIT</b><br/><i>no design yet</i>"/] --> SG{"<b>Scope<br/>gate</b>"}
+    end
+
+    SG -->|brainstorm| EX["Options, questions, a draft<br/>ticket — <b>never code</b>"]
+    SG -->|spike| SP["One time-boxed <code>spike/</code> branch,<br/>throwaway — <b>never the mainline</b>"]
+    SG -->|"small, confirmed"| RP["<b>Reduced path</b> — ticket →<br/>TDD → green build → PR"]
+    SG ==>|"<b>default</b>"| FULL
+
+    EX -.->|"becomes a ticket"| FULL
+    SP -.->|"real work restarts"| FULL
+
+    subgraph FULL["The full flow — ten phases"]
+        direction LR
+        DEF["<b>Define</b><br/>1 ticket<br/>2 clarify<br/>3 criteria · ADR · NFR"] --> PLN["<b>Plan</b><br/>4 committed before<br/>code, verified against<br/>the definitions"] --> BLD["<b>Build</b><br/>5 TDD, red → green<br/>6 every gate green"] --> VER["<b>Verify</b><br/>7 commit + PR<br/>8 independent review"] --> FIN["<b>Finish</b><br/>9 docs + diagrams<br/>10 production readiness"]
+    end
+
+    FULL --> DONE(["Done — and traceable"])
+    RP --> DONE
+    DONE -.->|"held true at every step above"| ALWAYS
+
+    subgraph ALWAYS["Always on"]
+        direction LR
+        R1["<b>No invisible decisions</b><br/>every choice traces to a criterion,<br/>ADR, NFR or an explicit answer"]
+        R2["<b>No assumptions</b><br/>ask the moment something<br/>is unclear, not later"]
+        R3["<b>Push back once</b><br/>then do it in full and<br/>record the trade-off"]
+        R4["<b>Nothing durable lives<br/>in the session</b><br/>ticket · plan · ADR · commits"]
+        R1 ~~~ R2 ~~~ R3 ~~~ R4
+    end
+
+    style START fill:none,stroke:none
+    style MI fill:#2c3e50,color:#fff
+    style SG fill:#8e44ad,color:#fff
+    style DONE fill:#27ae60,color:#fff
+    style RP fill:#ecf0f1,stroke:#95a5a6,color:#2c3e50
+```
 
 ---
 
