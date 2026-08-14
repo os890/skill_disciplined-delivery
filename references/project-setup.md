@@ -144,13 +144,24 @@ Never introduce a gate and a behaviour change in the same commit.
 
 Order that avoids rework:
 
-1. Ask the user: license, build tool, target platform version, ticket system, CI system, which arc42 sections the project will use, and the **accessibility and security requirements** (below). **Do not choose the license.**
+1. Ask the user: license, build tool, target platform version, ticket system, CI system, which arc42 sections the project will use, the **accessibility and security requirements** (below), and whether the project wants the **work-in-progress commit convention** (below). **Do not choose the license.**
 2. `README.md`, `LICENSE`, `CHANGELOG.md`, `.editorconfig`, `.gitattributes`, `docs/` skeleton.
 3. Build file with the quality gates wired from the start — cheapest moment there is — plus hooks, `commitlint`, and the release mechanism from `release-and-automation.md`.
-4. `ADR-0001` recording the stack, the gate set and which arc42 sections the project uses, so later deviations have something to deviate from.
+4. `ADR-0001` recording the stack, the gate set, which arc42 sections the project uses and whether the work-in-progress commit convention is on, so later deviations have something to deviate from.
 5. `docs/requirements/nfr.md` with whatever numbers are known, even if sparse, and the arc42 sections you can already fill — §1, §2, §3 and §12 usually exist on day one. Leave the rest out until there is content.
 6. CI running the same build the developer runs.
 7. A walking skeleton — one thin end-to-end path with a test — before any feature work, so the test infrastructure is proven rather than assumed.
+
+### The work-in-progress commit convention
+
+Not every team wants it, so **ask at project start and record the answer in `ADR-0001`** rather than assuming either way:
+
+> Commit as soon as work exists — even untested — with a status token on every subject (`UNTESTED` / `WORKING` / `FIXED`), promoted before pushing? Or commit only once a step is green, with plain Conventional Commits?
+
+- **On** — the rules in `SKILL.md` phases 5 and 7 apply, and `commitlint` (plus `git-cliff`) must be configured to accept the token.
+- **Off** — the ordinary model: commit when the step is green, subjects are plain Conventional Commits, and nothing in review looks for a token.
+
+**Off is the default for a project that never answered**, including an existing one adopting this skill. It is an offer, not something to impose on a history that already reads differently.
 
 ### Accessibility and security requirements
 

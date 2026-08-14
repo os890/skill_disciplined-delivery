@@ -11,7 +11,7 @@ Two rules that decide dependency questions without opening a reference: a **copy
 | Concern | Default |
 | --- | --- |
 | Version control | **Git** — ticket-named branch, small coherent commits, PR for review, **no squash merge** unless requested |
-| Commit messages | **Conventional Commits** carrying the ticket number, enforced by `commitlint`, each subject prefixed with a status token — `UNTESTED` / `WORKING` / `FIXED` (`SKILL.md` phase 7). Both `commitlint` and `git-cliff` parse the header, so the token has to be allowed in each — otherwise put it directly after the colon instead |
+| Commit messages | **Conventional Commits** carrying the ticket number, enforced by `commitlint`, plus a status token per subject — `UNTESTED` / `WORKING` / `FIXED` — where the project opted into the work-in-progress convention at init (`ADR-0001`). Both `commitlint` and `git-cliff` parse the header, so the token has to be allowed in each — otherwise put it directly after the colon instead |
 | Versioning and changelog | **SemVer** + **Keep a Changelog** in `CHANGELOG.md`, drafted from the commits (`git-cliff`) then curated for humans |
 | Ticket system | Whatever the project defines; otherwise **GitHub Issues** (`gh issue`) |
 | Secret scanning | **gitleaks** — local hook and CI gate |

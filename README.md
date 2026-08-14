@@ -43,7 +43,8 @@ Ask for the project to be initialized, and expect these questions first — the 
 1. **License** — required, and never chosen for you.
 2. Build tool, target platform version, ticket system, CI system.
 3. Which arc42 sections the project will use (full set for an application, a reduced set for a library or CLI).
-4. **Accessibility and security requirements** — any target level, regulation, standard or customer obligation. Whatever you name becomes an NFR with measurable criteria, and only then is tooling chosen for it. "No special requirements" is recorded as an explicit answer rather than left silent.
+4. Whether the project wants the **work-in-progress commit convention** — commit as soon as work exists, even untested, with `UNTESTED` / `WORKING` / `FIXED` on every subject; or plain Conventional Commits once a step is green. Off unless you ask for it.
+5. **Accessibility and security requirements** — any target level, regulation, standard or customer obligation. Whatever you name becomes an NFR with measurable criteria, and only then is tooling chosen for it. "No special requirements" is recorded as an explicit answer rather than left silent.
 
 It then creates, in this order:
 
