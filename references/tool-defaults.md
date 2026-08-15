@@ -35,7 +35,7 @@ Two rules that decide dependency questions without opening a reference: a **copy
 | Containers | **Podman**; fallback is **Docker Engine/CLI**, never Docker Desktop, which is proprietary and needs a paid subscription above a company-size threshold. Driven by the test suite (e.g. Testcontainers) |
 | Releases | The build tool's standard release mechanism — Maven: **`maven-release-plugin`**. Never a hand-typed command sequence |
 | Repeated manual steps | A committed POSIX script under `scripts/`, portable to Linux and containers, linted with `shellcheck` |
-| Formatting | The language's default formatter, with no second one layered on top |
+| Formatting | The language's default formatter, nothing else |
 | Editor and line endings | `.editorconfig`, and `.gitattributes` with `* text=eol=lf` |
 | Build quality gates | The build tool's quality plugins — Maven: enforcer, JaCoCo, Spotless, SpotBugs, RAT (see `references/project-setup.md`) |
 | Coverage | **~90 % line and branch on new or changed code, 80 % enforced floor.** In a repo already below it, set the gate to current coverage and ratchet upward — it never decreases |

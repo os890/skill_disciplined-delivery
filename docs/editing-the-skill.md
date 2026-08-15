@@ -47,6 +47,12 @@ Before removing anything, name which of these it is:
 
 For (1), **check the reading paths before cutting either copy**. Two locations are often not reached by the same workflows: ask which triggers lead a session to each. If a rule has to hold in a workflow that never opens the other file, the duplication is load-bearing and both copies stay. The spike and brainstorming triggers sit in `SKILL.md` although the detail lives in `references/exploration.md`, precisely because a session has to stop before it has any reason to open that file.
 
+**An addition needs a stated reason too**, and during an optimization pass more than a cut does — added words are what the pass exists to prevent. Corrects an error, resolves a real ambiguity, closes an escape hatch: those qualify. "Reads better" does not.
+
+- **Judge each edit on its own site.** A justification valid at one occurrence must not travel to another because they were made together: the same word can be ambiguous in prose and unambiguous in a table cell.
+- **Prefer a reason the project can enforce over a fact about the world.** "`shellcheck` rejects it as SC3040" is checkable by a gate the skill already runs; "Debian ships dash" is trivia with an expiry date, and the skill names no operating system anywhere else.
+- **Ask whether it belongs, not only whether it is true.** An addition can be correct, behaviour-neutral and still wrong for the file it landed in.
+
 Where duplication is deliberate, make it **asymmetric**: the full statement in one place, a short trigger pointing at it in the other. Two full copies drift apart and then contradict each other; a trigger and its target cannot disagree without it being obvious.
 
 ## The check that replaces a test suite

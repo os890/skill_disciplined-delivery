@@ -35,7 +35,7 @@ Ask once per session which mode applies, and carry the answer until it is change
 
 ## Action points
 
-**End every reply with what the user has to do.** After the summary, after any suggested next steps, the last thing in the message is a short **Action points** list holding only what *they* must act on: a pull request to review and merge, a question that blocks the work, a decision only they can make.
+**End every reply with what the user has to do, and end it there.** After the summary, after any suggested next steps, the last thing in the message is a short **Action points** list holding only what *they* must act on: a pull request to review and merge, a question that blocks the work, a decision only they can make.
 
 - One line each, imperative, naming the thing concretely — the PR number, the file, the open question.
 - **If a PR is waiting, that is usually the only line.** Do not pad it with what you did or what could come next; a single action is easier to act on than a good one buried in a list.

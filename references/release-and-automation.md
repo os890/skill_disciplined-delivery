@@ -44,7 +44,7 @@ A short pre-release check, run every time rather than remembered:
 - Prefer a **tool** over a script, a **script** over a manual step, and never the same manual step twice.
 - `scripts/` at the project root, one purpose per script, named after the task, listed in `docs/technical/development.md`.
 - **POSIX shell**, portable between the developer's host and Linux, so the same script later runs unchanged inside a Podman container or in CI. Avoid what differs across platforms: `sed -i`, `readlink -f`, `date` flags, GNU-only `find` options, `echo -e`. When a portable form is awkward, prefer a small script *inside a container image* over a host-specific one.
-- `set -eu`, and `-o pipefail` only in a script that declares `#!/usr/bin/env bash`: dash — `/bin/sh` on Debian and Ubuntu — does not implement it, and `shellcheck` fails the mismatch as SC3040. Check prerequisites up front with a message that says what is missing and how to get it; be idempotent where the task allows.
+- `set -eu`, and `-o pipefail` only in a script that declares a bash shebang — `shellcheck` rejects it in a POSIX script as SC3040. Check prerequisites up front with a message that says what is missing and how to get it; be idempotent where the task allows.
 - No secrets in a script and none in its output. Read them from the environment or the platform's secret store.
 - `shellcheck` runs as a build gate — scripts are code and get the same treatment.
 - **CI calls the same scripts**, so a developer can reproduce a CI failure locally. A long list of inline CI steps is a manual process with extra hiding places.
