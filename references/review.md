@@ -111,6 +111,8 @@ Would someone who clones this get what the author has? Look for anything that on
 - A developer's username or hostname, or the path of a sibling project on the same disk.
 - References to files that exist only locally: a personal config, an untracked helper script, a note the reader cannot open.
 - Ignore rules, scripts or config copied from another repository and still naming *that* repository's directories and tools.
+- **Build output or downloaded dependencies now tracked** — `target/`, `build/`, `dist/`, `node_modules/`, `.angular/`, `.gradle/`, coverage reports, packaged jars. They enter the history the first time someone commits before the ignore rule exists, which is visible in the diff even though nothing about it fails. Committed **lockfiles are the opposite case** and belong in the repository; it is the resolved dependencies and the compiled output that do not.
+  - The exception is a directory the project deliberately tracks — a checked-in generated client, a fixture built once. That is a decision, so it is recorded and the ignore rule is narrowed to it, rather than a whole tree arriving unannounced.
 
 None of these fail a build, which is why they survive: they work perfectly for the person who wrote them and break for everyone else. A leak spotted outside the diff is still worth raising — as a ticket, not as an expansion of this review.
 
