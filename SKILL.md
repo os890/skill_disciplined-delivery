@@ -226,7 +226,7 @@ If you discover something the definitions don't cover, **pause that part**: post
 
 The task is not finished while a test fails. Run the project's full build — compile, tests, and every quality gate — and report the actual output, including failures.
 
-**When a failure has no obvious cause, first check you are running what you think you are** — rebuild the artifact, and rebuild the image if a container is involved. A stale jar, or an image built before the last change, explains more surprises than any hypothesis, and it is the cheapest thing to rule out before reaching for a workaround.
+**When a failure has no obvious cause, first check you are running what you think you are** — rebuild the artifact, and rebuild the image if a container is involved. A stale jar, or an image built before the last change, explains more surprises than any hypothesis, and it is the cheapest thing to rule out before reaching for a deeper analysis or a workaround.
 
 A failing gate is a finding, not an obstacle: fix the code. **Never disable a plugin, exclude a class, lower a threshold or add a suppression to get green** without an ADR and the user's agreement.
 
