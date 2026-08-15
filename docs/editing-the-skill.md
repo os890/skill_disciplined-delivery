@@ -16,7 +16,8 @@ Rules for changing `SKILL.md` and the files under `references/` — how to add a
 ## What to cut, and what never to cut
 
 - **Cut restatement. Keep rationale.** A sentence explaining *why* a rule exists reads like padding and is the reason the rule gets followed instead of skipped — this file is consumed by a model before every task, and "reuse the ADRs" behaves differently from "reuse the ADRs, because an existing one that already decides part of your topic is the cheapest finding available". Restatement is different: the same point made twice because two edits each re-established the framing.
-- **Prefer deleting duplication across files over shortening prose.** The largest reductions came from removing things already said elsewhere, not from tightening sentences.
+- **Prefer deleting duplication across files over shortening prose — but check the reading paths before cutting either copy.** The largest reductions came from removing things already said elsewhere. The trap is that two locations are not reached by the same workflows: ask which triggers lead a session to each. If a rule has to hold in a workflow that never opens the other file, the duplication is load-bearing and both copies stay. The spike and brainstorming triggers sit in `SKILL.md` although the detail lives in `references/exploration.md`, precisely because a session has to stop before it has any reason to open that file.
+  - Where duplication is deliberate, make it **asymmetric**: the full statement in one place, a short trigger pointing at it in the other. Two full copies drift apart and then contradict each other; a trigger and its target cannot disagree without it being obvious.
 - **Accretion is the thing to look for.** Sections edited three times in three sessions usually say the same thing three ways. The fix is one structure — a numbered set of questions, a routing table — with each point stated once and examples carrying the weight.
 - **Count before and after, and report it honestly.** Most cuts are worth a few percent. The gain is legibility, not tokens; claiming otherwise invites a bad trade later.
 
@@ -52,8 +53,9 @@ Whatever remains is either a genuine exception or a contradiction.
 
 1. `grep` for contradictions the change introduced — the conditionality check above, and any term whose meaning shifted.
 2. Word-count the sections you touched, before and after.
-3. Diff each project copy against the skill and confirm **only the intended files differ**. `SKILL.md` should read `0`.
-4. Re-read the changed section once as a whole. Edits made one at a time drift, in the same way review fixes do.
+3. If you deleted one of two copies of a rule, confirm the survivor is reachable from **every** workflow that needs it — not just the one you had in mind.
+4. Diff each project copy against the skill and confirm **only the intended files differ**. `SKILL.md` should read `0`.
+5. Re-read the changed section once as a whole. Edits made one at a time drift, in the same way review fixes do.
 
 ## Traps met the hard way
 
