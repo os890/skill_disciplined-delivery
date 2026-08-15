@@ -70,7 +70,7 @@ The token saving is modest — most references shrink by well under a tenth. The
 | `references/review.md` | The review brief, handed to the review agent verbatim. |
 | `references/release-and-automation.md` | Cutting a release, and turning repeated manual steps into portable scripts. |
 | `references/exploration.md` | What a brainstorming session produces, and the per-branch permission a spike needs. |
-| `docs/editing-the-skill.md` | Rules for changing the skill without changing its behaviour — what is load-bearing, what may be cut, and the checks that stand in for a test suite. For maintainers; never copied into a project. |
+| `docs/editing-the-skill.md` | Rules for changing the skill without changing its behaviour — what is load-bearing, what may be cut, the checks that stand in for a test suite, and how this README and the diagrams are kept in sync with it. For maintainers; never copied into a project. |
 | `docs/delivery-flow.md` | The flow as diagrams — Mermaid source, eleven of them. |
 | `docs/diagrams/delivery-flow.md` | The same document with the fences replaced by rendered PNGs. **Open this one on GitHub**, which cannot render the ELK layout the source asks for. |
 
