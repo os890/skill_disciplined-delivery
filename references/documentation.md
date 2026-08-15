@@ -132,6 +132,19 @@ The test: *what else would have to change if this were reversed next month?* Not
 
 Decisions that usually fail that test: the build wrapper (`mvnw`), a plugin version, a formatter setting, a directory name, a library pulled in for one utility, a naming convention the linter already enforces. They are still decisions and rule 1 still applies, so they are written down — just where they are used: the build file, `docs/technical/development.md`, the ticket, or a comment at the site.
 
+**And it has to be a decision, not a description.** This is the more common mis-filing: the subject really is architectural, so it looks like ADR material, but what gets written is how the system *is* rather than a choice that was made. An ADR is frozen the day it is written; arc42 is kept current. So the question is what happens to the text later — if the system changed next year, an ADR would still be true, because it records a choice made at a moment. A description would simply be wrong, which is why it belongs where it can be maintained.
+
+| What you are writing | Where it goes |
+| --- | --- |
+| "We chose X over Y and Z, because …, and it costs us …" | **ADR** |
+| "The system is structured as …", "errors are handled by …", "the domain model is …" | **arc42** §5 building blocks, §7 deployment, §8 cross-cutting concepts |
+| "This uses the settlement date, not the booking date" | a **comment** at the site |
+| "p95 under 200 ms" | an **NFR** |
+
+Two smells that it is not an ADR: the draft has **no rejected options** — a description wearing an ADR's shape — and you would have to **edit it when the code changes**, which an immutable file cannot support.
+
+Where a decision genuinely shaped the structure, write both: the ADR for the choice, the arc42 section for the result. §9 links them and neither repeats the other.
+
 Borderline, prefer the ticket. An ADR can always be written later once a decision proves to shape something, whereas an ADR is immutable — a premature one cannot be deleted, only superseded, and the noise is permanent.
 
 ## Changelog

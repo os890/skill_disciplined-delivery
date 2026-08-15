@@ -190,7 +190,7 @@ Do not smooth over a gap with a "reasonable default". A default is a decision, a
 | Kind of decision | Where it lives |
 | --- | --- |
 | Business behaviour | Acceptance criteria on the ticket (Given/When/Then) |
-| Architecture / structural choice | ADR under `docs/adr/`, **MADR** format, one decision per file, rejected options recorded, never rewritten once decided (`references/documentation.md`) |
+| Architecture / structural **choice** — options weighed, not a description of how the system is | ADR under `docs/adr/`, **MADR** format, one decision per file, rejected options recorded, never rewritten once decided (`references/documentation.md`) |
 | Quality attribute (perf, security, availability, …) | NFR in `docs/requirements/nfr.md`, with a measurable number |
 | An interface others consume | A committed **OpenAPI**/**AsyncAPI** contract, agreed before implementation (`references/code-and-tests.md`) |
 
