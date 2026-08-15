@@ -120,36 +120,24 @@ Rules for committed images:
 
 ### What earns an ADR
 
-**Not every decision does**, and the set has a cost: every session reads the ADR *titles* while orienting, so each record that is not architectural makes the ones that are harder to find. Fifty files about tool trivia bury the three that shape the system.
+**Not every decision does**, and the set has a cost: every session reads the ADR *titles* while orienting, so records that are not architectural bury the ones that are. Three questions, each catching what the last one lets through.
 
-Write one when the decision does at least one of these:
+**Does anything else change if it is reversed?** Not beyond the file it lives in — not an ADR. That is the wrapper script, a plugin version, a formatter setting, a library pulled in for one utility. Still decisions, so still written down, just where they are used: the build file, `docs/technical/development.md`, the ticket, or a comment at the site.
 
-- **Constrains future work** — other code has to be written differently because of it.
-- **Is expensive to reverse** — a migration, a rewrite, or a coordinated change across modules.
-- **Would leave a newcomer asking "why is it like this?"** with no answer visible in the code.
-
-The test: *what else would have to change if this were reversed next month?* Nothing outside the file it lives in — it is not an ADR.
-
-Decisions that usually fail that test: the build wrapper (`mvnw`), a plugin version, a formatter setting, a directory name, a library pulled in for one utility, a naming convention the linter already enforces. They are still decisions and rule 1 still applies, so they are written down — just where they are used: the build file, `docs/technical/development.md`, the ticket, or a comment at the site.
-
-**And it has to be a decision, not a description.** This is the more common mis-filing: the subject really is architectural, so it looks like ADR material, but what gets written is how the system *is* rather than a choice that was made. An ADR is frozen the day it is written; arc42 is kept current. So the question is what happens to the text later — if the system changed next year, an ADR would still be true, because it records a choice made at a moment. A description would simply be wrong, which is why it belongs where it can be maintained.
+**Is it a choice, or a description?** The commoner mis-filing, because the subject really is architectural. An ADR is frozen and stays true, since it records a choice made at a moment; a description would simply become wrong, so it belongs where it is maintained.
 
 | What you are writing | Where it goes |
 | --- | --- |
 | "We chose X over Y and Z, because …, and it costs us …" | **ADR** |
-| "The system is structured as …", "errors are handled by …", "the domain model is …" | **arc42** §5 building blocks, §7 deployment, §8 cross-cutting concepts |
+| "The system is structured as …", "errors are handled by …", "the domain model is …" | **arc42** §5, §7, §8 |
 | "This uses the settlement date, not the booking date" | a **comment** at the site |
 | "p95 under 200 ms" | an **NFR** |
 
-Two smells that it is not an ADR: the draft has **no rejected options** — a description wearing an ADR's shape — and you would have to **edit it when the code changes**, which an immutable file cannot support.
+Two smells while drafting: **no rejected options** — a description wearing an ADR's shape — and text you would have to **edit when the code changes**, which an immutable file cannot hold. Where a decision did shape the structure, write both: the ADR for the choice, the arc42 section for the result, linked from §9 and not duplicated.
 
-Where a decision genuinely shaped the structure, write both: the ADR for the choice, the arc42 section for the result. §9 links them and neither repeats the other.
+**Is it core to *this* system?** The same subject is core in one product and plumbing in another: build tooling is architecture for a build plugin and plumbing for a business app; transaction boundaries are central where the domain has invariants and incidental in a read-only viewer. The yardstick is **arc42 §1**, purpose and top quality goals, already open from orienting. Copying another project's ADR set is how a domain-heavy application ends up with records about its wrapper script and none about its aggregates.
 
-**Calibrate against what the system is for.** Neither test above is absolute, because the same subject is core in one product and plumbing in another. Build tooling is an architecture decision for a build plugin and plumbing for a business app. Transaction boundaries are central where the domain has invariants to protect and incidental in a read-only viewer. A retry-and-backoff policy is the heart of an integration gateway and noise in an internal CRUD screen. Copying another project's ADR set is how a domain-heavy application ends up with records about its wrapper script and none about its aggregates.
-
-The yardstick is already written down: **arc42 §1** — the system's purpose and its top quality goals — which every session reads while orienting anyway. If a decision touches neither what the system exists to do nor a quality goal it is judged on, it is probably plumbing, and it goes where it is used.
-
-Borderline, prefer the ticket. An ADR can always be written later once a decision proves to shape something, whereas an ADR is immutable — a premature one cannot be deleted, only superseded, and the noise is permanent.
+Borderline, prefer the ticket: an ADR can be written later once a decision proves to shape something, but it is immutable — a premature one is never deleted, only superseded, and the noise is permanent.
 
 ## Changelog
 
