@@ -80,7 +80,7 @@ Where the work item touches an interface others consume — REST, messaging, or 
 
 Tests are the backbone. They exist to catch breakage nobody was looking for.
 
-- **TDD wherever possible**: the failing test comes first. A test that has never been seen to fail proves nothing.
+- **TDD by default**: the failing test comes first, and where that genuinely cannot happen you say why rather than deciding it silently. A test that has never been seen to fail proves nothing.
 - **Test the real flow whenever possible.** Unit tests cover the basics; a real end-to-end path through the actual components is what proves the feature works.
 - **Mocks are a last resort**, acceptable mainly at the edge of your system — a third-party API, a payment provider, a clock. Never mock your own domain to avoid wiring it up. A test suite made of mocks tests the mocks.
   - Where you do stub an external HTTP service, prefer a real fake over a hand-written mock: **WireMock** (or the ecosystem's equivalent) as an actual server — embedded where the test framework manages its lifecycle, as a container otherwise.
