@@ -145,6 +145,10 @@ Two smells that it is not an ADR: the draft has **no rejected options** — a de
 
 Where a decision genuinely shaped the structure, write both: the ADR for the choice, the arc42 section for the result. §9 links them and neither repeats the other.
 
+**Calibrate against what the system is for.** Neither test above is absolute, because the same subject is core in one product and plumbing in another. Build tooling is an architecture decision for a build plugin and plumbing for a business app. Transaction boundaries are central where the domain has invariants to protect and incidental in a read-only viewer. A retry-and-backoff policy is the heart of an integration gateway and noise in an internal CRUD screen. Copying another project's ADR set is how a domain-heavy application ends up with records about its wrapper script and none about its aggregates.
+
+The yardstick is already written down: **arc42 §1** — the system's purpose and its top quality goals — which every session reads while orienting anyway. If a decision touches neither what the system exists to do nor a quality goal it is judged on, it is probably plumbing, and it goes where it is used.
+
 Borderline, prefer the ticket. An ADR can always be written later once a decision proves to shape something, whereas an ADR is immutable — a premature one cannot be deleted, only superseded, and the noise is permanent.
 
 ## Changelog
