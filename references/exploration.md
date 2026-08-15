@@ -4,11 +4,9 @@ Read this when a topic is being explored rather than delivered — a brainstormi
 
 ## Brainstorming
 
-**A brainstorming session never turns into an implementation by itself.** Thinking about a new part is welcome and cheap; it produces input for phase 1, not code. During one: no files changed, no branch created, no task list of delivery phases.
+**During a session: no files changed, no branch created, no task list of delivery phases.** Thinking about a new part is welcome and cheap; what it produces is the input phase 1 needs — the options considered with their trade-offs, the open questions, the decisions that would need an ADR, the quality attributes that would need an NFR, and a draft work item.
 
-What it produces instead: the options considered with their trade-offs, the open questions, the decisions that would need an ADR, the quality attributes that would need an NFR, and a draft work item.
-
-Close the session by naming what would become a ticket — then the flow starts at phase 1 with those answers in hand, and the clarification loop still runs. An idea that felt settled in discussion is not a definition.
+Close the session by naming what would become a ticket, so the flow starts at phase 1 with those answers in hand and the clarification loop runs on them.
 
 ## Proof of concept / spike
 

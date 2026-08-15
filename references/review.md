@@ -99,7 +99,7 @@ A workaround is not automatically wrong — an upstream bug you cannot reach is 
 - Missing observability on the new paths: no span or metric on the new operation, no log at the failure point, no correlation identifier; or the opposite — a token or personal datum written into a log.
 - Hardcoded limit, timeout, host or path that belongs in configuration.
 - Missing timeout, retry or backoff on an outbound call; unbounded growth.
-- Leftover TODO, commented-out code, debug output, hardcoded value that belongs in config.
+- Leftover TODO, commented-out code, debug output.
 
 ### Self-contained for a fresh clone
 

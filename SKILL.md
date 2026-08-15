@@ -145,7 +145,7 @@ Other skills and tooling may be reused wherever they do not contradict these rul
 
 ## Tool defaults
 
-**A tool the project already uses wins.** `references/tool-defaults.md` decides only what to *introduce* where nothing exists yet — never a reason to replace a working formatter, coverage tool or test framework. Swapping an established one is its own work item with an ADR, not a side effect. Read the list before introducing a tool the project lacks; reaching for your own habit instead is an invisible decision.
+**A tool the project already uses wins.** `references/tool-defaults.md` decides only what to *introduce* where nothing exists yet — never a reason to replace a working formatter, coverage tool or test framework. Swapping an established one is its own work item with an ADR, not a side effect. Reaching for your own habit instead of the list is an invisible decision.
 
 - **Automate the second time.** A manual step done twice becomes a committed script under `scripts/` — *unless a tool or an existing script in the project already does it*, which is the first thing to check (`references/release-and-automation.md`).
 - **Never install a heavyweight tool on the host.** Run it from its official container image with the workspace mounted — **Podman** first, Docker Engine/CLI as fallback. If neither the tool nor a container runtime is available, stop and ask; never silently skip the screenshots or the end-to-end tests.
@@ -260,7 +260,7 @@ After the code is settled, check documentation for both missing and outdated con
 
 - **End-user documentation** (`docs/user/`, structured per **Diátaxis**) for every user-visible change, with screenshots of the real build, or a clearly-marked mockup where the UI does not exist yet. A purely technical item may skip it; say so explicitly.
 - **`CHANGELOG.md`** — confirm the phase 7 entry still matches what actually shipped.
-- **Technical documentation** always, always with Mermaid diagrams chosen to fit the subject. Structure it as **arc42** under `docs/technical/arc42/` — updating the affected sections of the system's document, not creating a new one per item. §9 indexes the ADRs and §10 the NFRs by link, never by copy.
+- **Technical documentation** always, always with Mermaid diagrams chosen to fit the subject. Structure it as **arc42** under `docs/technical/arc42/` — updating the affected sections of the system's document, not creating a new one per item.
 
 ### 10. Production-readiness review
 
