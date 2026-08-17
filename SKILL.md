@@ -163,6 +163,8 @@ Track the applicable phases with the harness task list (`TaskCreate` at the star
 
 Omit tasks the scope gate removed, and say which and why. When a phase is blocked, leave it `in_progress` and state the blocker in the reply. Don't also re-post Markdown checklists — the task list is the single view *for this session*.
 
+**Where the session has no task-list tool**, say so once and keep the same view in the reply: current phase, what is done, what is next. That rule forbids a second view, not the only one available.
+
 It does not survive the session, so it is never the record. Anything that must outlive the session goes where it is durable: the confirmed understanding and the scope-gate decision into the **ticket**, step progress into the **plan file**, decisions into an **ADR**, blockers into a ticket comment.
 
 ## Flow
