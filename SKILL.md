@@ -33,6 +33,13 @@ Ask once per session which mode applies, and carry the answer until it is change
 
 **Neither mode changes how completely the task itself is done.** Task-only bounds *how many things* you take on, never how well you finish the one you took — trimming the requested work is the under-delivery defect in `references/code-and-tests.md`, not restraint. Doing three steps beyond the ask and doing two-thirds of it are the same failure to deliver what was asked, in opposite directions.
 
+## Replies
+
+**Answer, then stop.** State the result; give the reasoning behind it when the user asks, not before. Terseness never drops what a phase requires — the mirror, the plan verification, the build output including failures, a pushback's cost.
+
+- **Several items of one kind — options, findings, open questions — go in a table with numbered rows**, so the user can answer "2 and 4". Two or three columns, one line per cell; once a row wraps, split it or use prose.
+- A table is optional, and only for the body of the reply. The **Action points** block below stays last and stays a list.
+
 ## Action points
 
 **End every reply with what the user has to do, and end it there.** After the summary, after any suggested next steps, the last thing in the message is a short **Action points** list holding only what *they* must act on: a pull request to review and merge, a question that blocks the work, a decision only they can make.

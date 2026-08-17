@@ -146,6 +146,10 @@ At the start of a session it asks one question — *proactive, or this task only
 
 Neither setting changes how completely the task itself gets done — it bounds how many things are taken on, not how well the one you asked for is finished.
 
+### It answers to the point
+
+Replies state the result rather than the reasoning that produced it; the analysis behind it comes when you ask for it. Being brief never costs you what a phase owes you, though — the understanding summary, the plan verification, and the real build output including its failures still arrive in full. Where there are several items of one kind — options, findings, open questions — they arrive as a small table with numbered rows, so you can answer "2 and 4" instead of quoting them back. The table is an aid for the overview, kept to a couple of columns and one line per cell, and it never absorbs the action points below.
+
 ### It tells you when it is your turn
 
 Every reply ends with **Action points** — a short list of what only you can do: review and merge a PR, answer a blocking question, make a decision. It comes last, after the summary and after any suggestions, and when a PR is waiting it is usually the single line. If nothing needs you, the block is absent rather than saying "none", so its presence is the signal.
