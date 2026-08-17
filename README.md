@@ -164,7 +164,7 @@ Agreement is not the default answer. When the approach, scope, tool or trade-off
 - A decision with no definition behind it.
 - **An existing test that would have to change** — you get the reason and the options first.
 - A plan that disagrees with the definitions.
-- A red suite or a failing gate.
+- A red suite or a failing gate — on the branch, where it also means no PR is opened without your explicit permission, and on the mainline after a merge, where you are asked whether to fix it before the next topic starts.
 - A phase that would be skipped without confirmation.
 - A license that needs choosing.
 

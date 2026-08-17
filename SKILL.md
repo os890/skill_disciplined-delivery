@@ -249,7 +249,7 @@ A failing gate is a finding, not an obstacle: fix the code. **Never disable a pl
 - **`UNTESTED` never reaches the remote.** Amend it to `WORKING` once the tests pass, before pushing. Once pushed the history is shared, so a later repair is a new `FIXED` commit, never a rewrite of what others may already have.
 - Every commit you author carries a `Co-Authored-By:` trailer naming the model.
 - A user-visible change adds a `CHANGELOG.md` entry under *Unreleased*, written from the user's point of view — not a paste of the commit subject — grouped as Added / Changed / Deprecated / Removed / Fixed / Security, with a migration note for a breaking change (`references/documentation.md`).
-- Push the branch and open a PR where the project supports them.
+- Push the branch and open a PR where the project supports them — **only on a green build**. A red suite or a failing gate means no PR unless the user allows it in answer to an explicit question (`AskUserQuestion`), and the PR then names what is red.
 - **Merge commits, no squash** unless the user asks — the small coherent commits are the history.
 - The PR description links the ticket, summarises the change, notes deviations from the plan and why, and lists what a reviewer should look at.
 
@@ -285,7 +285,7 @@ Stop, say so, and involve the user when:
 - A decision has no backing definition.
 - An existing test would have to change (protocol in `references/code-and-tests.md`).
 - The plan and the definitions disagree.
-- The suite is red, or a quality gate fails.
+- The suite is red, or a quality gate fails — on the branch, and on the **mainline after a merge**, whatever the cause. Ask whether to fix it before the next topic starts; a red mainline is never a footnote to a finished item.
 - A phase would be skipped without confirmation.
 - A license must be chosen — that is the user's decision, never yours.
 - A **third-party dependency** would be added that the platform does not already provide.
