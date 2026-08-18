@@ -175,6 +175,7 @@ Stopping means the blocker is stated and everything independent of the answer co
 - **Coverage**: ~90 % on new and changed code, 80 % floor. In a repo already below it, the gate is set to current coverage and ratcheted; it never decreases.
 - **Tests are not edited to make new code pass** without telling you why first. That includes the quiet variants — deleting an assertion, loosening a matcher, `@Disabled`, widening a tolerance, excluding a class from coverage.
 - **Gates are never silenced to get green.** Fixing the code is the only route; weakening a gate needs an ADR.
+- **A test the in-process framework cannot support is moved, not dropped** — its documentation and its own scenario tests decide what it supports, and the part it cannot reach gets a real end-to-end test.
 - **Migrations are forward-only**, with reversals written as ordinary migrations, because Flyway's `undo` is a paid feature.
 - **Every tool is open source and locally runnable** with no subscription — GitHub as the single accepted exception.
 - **Merge commits, no squash** unless you ask.
