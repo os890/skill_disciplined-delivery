@@ -223,7 +223,7 @@ Everything the skill can reach for, why, and which option wins when there are se
 | Code structure | **Modules along DDD boundaries** | A deployment monolith still gets a modular codebase; boundary violations become compile errors | Default (Maven/Gradle multi-module + ArchUnit) |
 | JS / TypeScript tests | **Vitest** | Angular CLI default for new projects since v21; coverage built in, so no separate tool | Default (JS/TS) |
 | Java integration tests (CDI) | **jawelte** | Bootstraps CDI in-process as a JUnit 6 extension — integration tests written like unit tests, no server, no container | Default for Jakarta/CDI projects |
-| Test containers | **Testcontainers** | The suite owns the lifecycle of real dependencies | Default *only* where a real engine cannot run in-process (needs `DOCKER_HOST` + Ryuk disabled under rootless Podman) |
+| Test containers | **Testcontainers** | The suite owns the lifecycle of real dependencies | Default *only* where a real engine cannot run in-process, or the in-process framework cannot exercise the feature (needs `DOCKER_HOST` + Ryuk disabled under rootless Podman) |
 | HTTP fakes | **WireMock** | A real fake server instead of a hand-written mock, at the system edge | Default |
 | Contract tests | **Pact** + self-hosted **Pact Broker** | Stubs derived from a verified contract, so services cannot drift | Default where services are owned by different teams |
 | Async assertions | **Awaitility** | Awaits a condition instead of sleeping; kills flakiness | Default |
